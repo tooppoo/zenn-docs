@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/tooppoo/zenn-docs#readme",
   "devDependencies": {
-    "zenn-cli": "0.1.70"
+    "zenn-cli": "0.1.72"
   }
 }
