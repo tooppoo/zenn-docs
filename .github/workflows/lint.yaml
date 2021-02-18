@@ -57,4 +57,5 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-text-lint-cache
 
+    - run: yarn
     - run: yarn test
