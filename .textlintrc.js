@@ -7,6 +7,7 @@ module.exports = {
     },
   },
   rules: {
+    "footnote-order": true,
     "ja-no-abusage": true,
     "ja-no-mixed-period": true,
     "no-double-negative-ja": true,

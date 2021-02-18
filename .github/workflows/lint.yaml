@@ -53,9 +53,9 @@ jobs:
         cache-name: text-lint-cache
       with:
         path: ./.textlintcache
-        key: ${{ runner.os }}-text-lint-cache
+        key: ${{ runner.os }}-text-lint-cache-${{ hashFiles(.textlintrc.js) }}
         restore-keys: |
-          ${{ runner.os }}-text-lint-cache
+          ${{ runner.os }}-text-lint-cache-
 
     - run: yarn
     - run: yarn test
