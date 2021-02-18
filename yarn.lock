@@ -235,6 +235,11 @@
     text-table "^0.2.0"
     try-resolve "^1.0.1"
 
+"@textlint/get-config-base-dir@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@textlint/get-config-base-dir/-/get-config-base-dir-2.0.0.tgz#3d0e862e1dd67cf8286ca52f8bd911e10dca2941"
+  integrity sha512-J3cG1pl2llYD4ZaZMe0qVgVaHT8RvT+/SW1FHQ8HRceNalMM9O0Y8iIgtl4GGOx4vMghoIPKFVLASw8P8bJ3ZA==
+
 "@textlint/kernel@^3.4.2":
   version "3.4.2"
   resolved "https://registry.yarnpkg.com/@textlint/kernel/-/kernel-3.4.2.tgz#2d2ad545548594c1adeab30d1e410e8116e5fdd9"
@@ -292,6 +297,18 @@
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@textlint/module-interop/-/module-interop-1.2.2.tgz#4f550c592439ec548eed1f90f127005ad339e5ad"
   integrity sha512-B8HPS129lOqzEpRcafYl/OJ2TDxfBw1jGfEhebzwt3kGoMd5pQVih+hUIOl+SfAmLWqCDEniaKn0gw1s+hjSXA==
+
+"@textlint/regexp-string-matcher@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@textlint/regexp-string-matcher/-/regexp-string-matcher-1.1.0.tgz#e19975029ce228a214d50c6a7e9dbcbef29ad8cd"
+  integrity sha512-uTPnE1Dw1j+9clXPn61ZUdtg+WyhbgeXHwCTfBev7quHjeCP9PS8NdRkR6wEgmjuLg+xZlI4r/e1r6Bd0xyusQ==
+  dependencies:
+    escape-string-regexp "^1.0.5"
+    execall "^1.0.0"
+    lodash.sortby "^4.7.0"
+    lodash.uniq "^4.5.0"
+    lodash.uniqwith "^4.5.0"
+    to-regex "^3.0.2"
 
 "@textlint/source-code-fixer@^3.4.2":
   version "3.4.2"
@@ -1343,6 +1360,14 @@ clipboard@^2.0.0:
     select "^1.1.2"
     tiny-emitter "^2.0.0"
 
+clone-regexp@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/clone-regexp/-/clone-regexp-1.0.1.tgz#051805cd33173375d82118fc0918606da39fd60f"
+  integrity sha512-Fcij9IwRW27XedRIJnSOEupS7RVcXtObJXbcUOX93UCLqqOdRpkvzKywOOSizmEK/Is3S/RHX9dLdfo6R1Q1mw==
+  dependencies:
+    is-regexp "^1.0.0"
+    is-supported-regexp-flag "^1.0.0"
+
 clone-response@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/clone-response/-/clone-response-1.0.2.tgz#d1dc973920314df67fbeb94223b4ee350239e96b"
@@ -2247,6 +2272,13 @@ evp_bytestokey@^1.0.0, evp_bytestokey@^1.0.3:
   dependencies:
     md5.js "^1.3.4"
     safe-buffer "^5.1.1"
+
+execall@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/execall/-/execall-1.0.0.tgz#73d0904e395b3cab0658b08d09ec25307f29bb73"
+  integrity sha1-c9CQTjlbPKsGWLCNCewlMH8pu3M=
+  dependencies:
+    clone-regexp "^1.0.0"
 
 expand-brackets@^2.1.4:
   version "2.1.4"
@@ -3153,6 +3185,16 @@ is-regex@^1.0.4, is-regex@^1.1.1:
     call-bind "^1.0.2"
     has-symbols "^1.0.1"
 
+is-regexp@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/is-regexp/-/is-regexp-1.0.0.tgz#fd2d883545c46bac5a633e7b9a09e87fa2cb5069"
+  integrity sha1-/S2INUXEa6xaYz57mgnof6LLUGk=
+
+is-supported-regexp-flag@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/is-supported-regexp-flag/-/is-supported-regexp-flag-1.0.1.tgz#21ee16518d2c1dd3edd3e9a0d57e50207ac364ca"
+  integrity sha512-3vcJecUUrpgCqc/ca0aWeNu64UGgxcvO60K/Fkr1N6RSvfGCTU60UKN68JDmKokgba0rFFJs12EnzOQa14ubKQ==
+
 is-symbol@^1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/is-symbol/-/is-symbol-1.0.3.tgz#38e1014b9e6329be0de9d24a414fd7441ec61937"
@@ -3487,6 +3529,16 @@ lodash.sortby@^4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/lodash.sortby/-/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
   integrity sha1-7dFMgk4sycHgsKG0K7UhBRakJDg=
+
+lodash.uniq@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
+  integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
+
+lodash.uniqwith@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.uniqwith/-/lodash.uniqwith-4.5.0.tgz#7a0cbf65f43b5928625a9d4d0dc54b18cadc7ef3"
+  integrity sha1-egy/ZfQ7WShiWp1NDcVLGMrcfvM=
 
 lodash@^4.0.0, lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14:
   version "4.17.20"
@@ -5776,6 +5828,16 @@ text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
+textlint-filter-rule-allowlist@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/textlint-filter-rule-allowlist/-/textlint-filter-rule-allowlist-2.0.1.tgz#2c30a3938690003ee41f415989352547cedf5cf4"
+  integrity sha512-HiQ1bz1Z/M9Y8pKrvPU6WFE41dpGFKqWnmDZZLRKN8Nqax9+I8xZg3swCu6x3HFAoTF5uPtuIe8B1m/isCxvQQ==
+  dependencies:
+    "@textlint/ast-node-types" "^4.2.5"
+    "@textlint/get-config-base-dir" "^2.0.0"
+    "@textlint/regexp-string-matcher" "^1.1.0"
+    rc-config-loader "^3.0.0"
+
 textlint-rule-helper@^1.1.3, textlint-rule-helper@^1.1.5:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/textlint-rule-helper/-/textlint-rule-helper-1.2.0.tgz#be68d47a5146b16dd116278c9aeb7bd35631ccda"
@@ -5845,6 +5907,13 @@ textlint-rule-no-mix-dearu-desumasu@^4.0.1:
     analyze-desumasu-dearu "^4.0.0"
     textlint-rule-helper "^2.0.0"
     unist-util-visit "^2.0.2"
+
+textlint-rule-period-in-list-item@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/textlint-rule-period-in-list-item/-/textlint-rule-period-in-list-item-0.3.2.tgz#17f7461554f596408e384d34b12e42d7d3506949"
+  integrity sha512-47yQZ14SbNfyBGKcSV/89eXwxLlGIwj8WzbKk1jvDh/uPy59skVfFbWoF4tUn09mYnRyVldMsdqB0llYgQMLUA==
+  dependencies:
+    check-ends-with-period "^1.0.1"
 
 textlint-rule-prh@^2.2.0:
   version "2.4.1"
