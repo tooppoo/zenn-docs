@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "textlint --cache ./[!node_modules]*/**.md"
+    "test": "textlint --cache ./[!node_modules]*/**.md",
+    "preview": "zenn preview"
   },
   "repository": {
     "type": "git",
