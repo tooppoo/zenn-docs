@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "textlint --cache ./[!node_modules]*/**.md"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,14 @@
   },
   "homepage": "https://github.com/tooppoo/zenn-docs#readme",
   "devDependencies": {
+    "textlint": "^11.8.2",
+    "textlint-rule-ja-no-abusage": "^2.0.1",
+    "textlint-rule-ja-no-mixed-period": "^2.1.1",
+    "textlint-rule-no-double-negative-ja": "^1.0.6",
+    "textlint-rule-no-doubled-conjunction": "^1.0.3",
+    "textlint-rule-no-doubled-joshi": "^3.8.0",
+    "textlint-rule-no-mix-dearu-desumasu": "^4.0.1",
+    "textlint-rule-web-plus-db": "^1.1.5",
     "zenn-cli": "0.1.72"
   }
 }
