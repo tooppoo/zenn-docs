@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/tooppoo/zenn-docs#readme",
   "devDependencies": {
-    "textlint": "11.9.0",
+    "textlint": "11.9.1",
     "textlint-filter-rule-allowlist": "2.0.1",
     "textlint-rule-footnote-order": "1.0.3",
     "textlint-rule-ja-no-abusage": "3.0.0",
