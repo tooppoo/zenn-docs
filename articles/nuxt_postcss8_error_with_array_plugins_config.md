@@ -161,4 +161,4 @@ export default {
 他方、 nuxt では [Arrayではなくオブジェクト形式での指定を推奨しようとしている？](https://ja.nuxtjs.org/docs/2.x/configuration-glossary/configuration-build/#postcss)
 
 postcss と nuxt で是とする方向が食い違っているように見える、しかも postcss は次期バージョンでオブジェクト方式を廃止しようとしている点が気がかり。
-nuxt の postcss-plugin で、今後このI/F差分を継続して埋めていくことになるのだろうか。
+このI/F差分は、nuxt の plugin によって今後継続して埋めていくことになるのだろうか。
