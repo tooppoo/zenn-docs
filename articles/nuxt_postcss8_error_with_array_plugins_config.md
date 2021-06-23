@@ -67,7 +67,7 @@ autoprefixer を v10 にバージョンアップする時、postcssをv8以上�
 ```
 
 ## `nuxt.config.js` でのモジュール指定
-```nuxt.config.js
+```js
 {
   buildModules: [
     '@nuxt/postcss8'
@@ -78,11 +78,11 @@ autoprefixer を v10 にバージョンアップする時、postcssをv8以上�
 `'@nuxt/postcss8'` をコメントアウトすると掲題のエラーは発生しなくなった。
 そのため、 `'@nuxt/postcss8'` が原因と判断。
 
-# 結果
+# 対処法
 `nuxt.config.js` の `build.postcss.plugins` 指定を配列からオブジェクト形式に変更することで、掲題の現象は発生しなくなった。
 
 ## before
-```nuxt.config.js
+```js
 import path from 'path'
 // (略)
 export default {
@@ -101,7 +101,7 @@ export default {
 ```
 
 ## after
-```nuxt.config.js
+```js
 import path from 'path'
 // (略)
 export default {
