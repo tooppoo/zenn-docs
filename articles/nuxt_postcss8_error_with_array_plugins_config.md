@@ -1,8 +1,8 @@
 ---
-title: ""
-emoji: "🍣"
+title: '@nuxt/postcss8 使用時 "Cannot find module 0" エラーが発生する場合とその対処'
+emoji: "💣"
 type: "tech"
-topics: ["nuxt.js", "postcss8"]
+topics: ["nuxtjs", "postcss8"]
 published: true
 ---
 
