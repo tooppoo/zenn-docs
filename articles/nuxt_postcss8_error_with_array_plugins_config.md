@@ -154,5 +154,5 @@ export default {
 
 
 # 懸念
-[postcss-loader](https://github.com/webpack-contrib/postcss-loader#config) を見ると、 `plugins` のキーをオブジェクトで指定する方法は `deprecated, will be removed in the next major release` であり、基本的には配列を用いることが推奨されている。従って、 `@nuxt/postcss8` を用いるためにプラグイン指定をオブジェクトにした場合、今後のバージョンアップによって問題が発生する可能性がある。
+[postcss-loader](https://github.com/webpack-contrib/postcss-loader#config) を見ると、 `plugins` のキーをオブジェクトで指定する方法は `deprecated, will be removed in the next major release` であり、基本的には配列を用いることが推奨されている。従って、 `@nuxt/postcss8` を用いるためにプラグイン指定をオブジェクトにした場合、今後のバージョンアップに際して問題となる可能性がある。
 
