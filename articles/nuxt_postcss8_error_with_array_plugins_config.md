@@ -3,7 +3,7 @@ title: ""
 emoji: "🍣"
 type: "tech"
 topics: ["nuxt.js", "postcss8"]
-published: false
+published: true
 ---
 
 # 現象
