@@ -154,5 +154,11 @@ export default {
 
 
 # 懸念
+## postcss-loader の設定方法
 [postcss-loader](https://github.com/webpack-contrib/postcss-loader#config) を見ると、 `plugins` のキーをオブジェクトで指定する方法は `deprecated, will be removed in the next major release` であり、基本的には配列を用いることが推奨されている。従って、 `@nuxt/postcss8` を用いるためにプラグイン指定をオブジェクトにした場合、今後のバージョンアップに際して問題となる可能性がある。
 
+## nuxt と postcss-loader のズレ？
+他方、 nuxt では [Arrayではなくオブジェクト形式での指定を推奨しようとしている？](https://ja.nuxtjs.org/docs/2.x/configuration-glossary/configuration-build/#postcss)
+
+postcss と nuxt で是とする方向が食い違っているように見える、しかも postcss は次期バージョンでオブジェクト方式を廃止しようとしている点が気がかり。
+nuxt の postcss-plugin で、今後このI/F差分を継続して埋めていくことになるのだろうか。
