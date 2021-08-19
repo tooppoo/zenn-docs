@@ -1,0 +1,11 @@
+
+# configs
+.gitattributes
+.editorconfig
+.*ignore
+.textlintrc.js
+renovate.json
+.github/workflows/*
+
+# misc
+*.md
