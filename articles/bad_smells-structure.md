@@ -198,7 +198,8 @@ published: true
 その時には、コードやモデル表現を記述するにあたって、どのような時に立ち止まり「修正」へと向かうべきなのか、その基準を見出すことができるのかもしれません。
 
 # 参考資料
-- [@t2-kob](https://twitter.com/t2kob1) 「RDRA と EventStroming(デザインレベル) の組み合わせの可能性」 https://qiita.com/t2-kob/items/3d1ec6a780107036d6b2 2020/12/19 03:01 最終閲覧閲覧
-- [@jnuank_](https://twitter.com/jnuank_) 「モデルの不吉なにおい」 https://jnuank.hatenablog.com/entry/2020/12/14/094851 2020/12/19 02:45 最終閲覧閲覧
-- WikiWikiWeb - Code Smell https://wiki.c2.com/?CodeSmell - 2020/12/19 01:39 最終閲覧
-- Martin Fowler (2018) Refactoring: Improving the Design of Existing Code ( (2019)「リファクタリング 既存のコードを安全に改善する 第2版」)
+- [@t2-kob](https://twitter.com/t2kob1) (2020)「RDRA と EventStroming(デザインレベル) の組み合わせの可能性」, <https://qiita.com/t2-kob/items/3d1ec6a780107036d6b2> 2020/12/19 03:01アクセス
+- [@jnuank_](https://twitter.com/jnuank_) (2020)「モデルの不吉なにおい」, <https://jnuank.hatenablog.com/entry/2020/12/14/094851> 2020/12/19 02:45アクセス
+- "WikiWikiWeb - Code Smell", <https://wiki.c2.com/?CodeSmell> 2020/12/19 01:39アクセス
+- Martin Fowler (2018)『Refactoring: Improving the Design of Existing Code』
+- Martin Fowler (2019)『リファクタリング 既存のコードを安全に改善する 第2版』児玉公信,友野晶夫,平澤章,梅澤真史 共訳, オーム社
