@@ -1,3 +1,6 @@
+const path = require('path')
+const prhRules = path.resolve(__dirname, 'node_modules', 'prh-rules')
+
 module.exports = {
   filters: {
     allowlist: {
@@ -15,6 +18,10 @@ module.exports = {
     "no-doubled-joshi": true,
     "no-mix-dearu-desumasu": true,
     "period-in-list-item": true,
-    "web-plus-db": true,
-  }
+    "prh": {
+      "rulePaths": [
+        path.resolve(prhRules, "files", "markdown.yml")
+      ]
+    },
+  },
 }
