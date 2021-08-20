@@ -1,9 +1,5 @@
 ---
-title: "「わかりやすい」「わかりにくい」は何を語りうるか"
-emoji: "🤔"
-type: "idea" # tech: 技術記事 / idea: アイデア
-topics: ["ポエム"]
-published: false
+title: "はじめに"
 ---
 
 # はじめに
