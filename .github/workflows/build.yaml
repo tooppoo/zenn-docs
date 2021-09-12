@@ -3,7 +3,6 @@
 name: Build Pdf
 on:
   push:
-    branches: [ main ]
     tags:
       - "*/v*.*.*"
 
