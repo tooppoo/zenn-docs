@@ -40,25 +40,10 @@ package app {
     class ZennBookShelf
     ZennBookShelf .u.|> BookShelf
 
-    class ZennBook {
-      path: string
-    }
     class ZennBookConfig {
       chapters: string[]
     }
-    ZennBook o--> "1" ZennBookConfig
-    ZennBookShelf -r-> ZennBook : use to build Book
-
-    interface ZennBookLoader
-    ZennBookShelf ..> ZennBookLoader
-    ZennBookLoader .u.> ZennBook : build
-
-    package loader {
-      class FileSystemZennBookLoader {
-        root: string
-      }
-      FileSystemZennBookLoader .u.|> ZennBookLoader
-    }
+    ZennBookShelf ..> ZennBookConfig : use
   }
 }
 

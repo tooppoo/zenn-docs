@@ -22,6 +22,7 @@
   "homepage": "https://github.com/tooppoo/zenn-docs#readme",
   "devDependencies": {
     "install": "0.13.0",
+    "js-yaml": "4.1.0",
     "md-to-pdf": "4.0.1",
     "npm": "7.23.0",
     "pino": "6.13.2",
