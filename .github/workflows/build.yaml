@@ -62,5 +62,15 @@ jobs:
 
     - name: Send Review Target
       run: |
-        NOTIFY_MAIL_FILES=build/books/${{ steps.build.outputs.book_version }}.pdf \
-          yarn mail
+        cat << EOF >> .env
+          NOTIFY_MAIL_ACCOUNT=${{ secrets.NOTIFY_MAIL_ACCOUNT }}
+          NOTIFY_MAIL_PASSWORD=${{ secrets.NOTIFY_MAIL_PASSWORD }}
+          NOTIFY_MAIL_SENDER=${{ secrets.NOTIFY_MAIL_SENDER }}
+          NOTIFY_MAIL_TO=${{ secrets.NOTIFY_MAIL_TO }}
+          NOTIFY_MAIL_CC=${{ secrets.NOTIFY_MAIL_CC }}
+          NOTIFY_MAIL_BCC=${{ secrets.NOTIFY_MAIL_BCC }}
+          NOTIFY_MAIL_SUBJECT=${{ secrets.NOTIFY_MAIL_SUBJECT }}
+          NOTIFY_MAIL_TEXT=${{ secrets.NOTIFY_MAIL_TEXT }}
+          NOTIFY_MAIL_FILES=build/books/${{ steps.build.outputs.book_version }}.pdf
+        EOF
+        yarn mail
