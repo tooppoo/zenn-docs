@@ -7,11 +7,20 @@ export class Book {
    * @param {Section[]} sections
    */
   constructor(id, path, sections) {
-    /** @readonly */
+    /**
+     * @readonly
+     * @type {string}
+     */
     this.id = id
-    /** @readonly */
+    /**
+     * @readonly
+     * @type {string}
+     */
     this.path = path
-    /** @readonly */
+    /**
+     * @readonly
+     * @type {Section[]}
+     */
     this.sections = sections
   }
 }

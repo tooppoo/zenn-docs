@@ -19,19 +19,12 @@ package core {
   }
 
   package conversion {
-    class SerializedBook
-    interface BookSerializer
-    BookSerializer .u..> Book : serialize
-    BookSerializer ..> SerializedBook : serialized
-
     interface Converter {
-      convert(book: SerializedBook, outPath: string)
+      convert(book: Book, outPath: string)
     }
-    Converter ..> SerializedBook : convert
-    Converter .l[hidden].> BookSerializer
+    Converter ..> Book : convert
 
     class ConvertBook << service >>
-    ConvertBook ..> BookSerializer : use to serialize book
     ConvertBook ..> Converter : convert serialized book
     ConvertBook ..> BookShelf : use to get book
 
