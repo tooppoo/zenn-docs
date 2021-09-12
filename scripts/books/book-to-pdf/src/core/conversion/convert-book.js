@@ -1,3 +1,4 @@
+import { logger } from '../../util/logger'
 
 /**
  * book convert service
@@ -30,8 +31,17 @@ export class ConvertBook {
    * @returns {Promise<void>}
    */
   async convert(bookId, to) {
-    const book = await this.bookShelf.find(bookId)
+    try {
+      logger.info('start book conversion')
 
-    return this.converter.convert(book, to)
+      const book = await this.bookShelf.find(bookId)
+      await this.converter.convert(book, to)
+
+      logger.info('succeed book conversion')
+    } catch (error) {
+      logger.error('failed book conversion')
+
+      throw error
+    }
   }
 }

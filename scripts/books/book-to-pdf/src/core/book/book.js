@@ -23,4 +23,11 @@ export class Book {
      */
     this.sections = sections
   }
+
+  /**
+   * @returns {Section[]}
+   */
+  get orderedSections() {
+    return this.sections.sort((a, b) => a.index - b.index)
+  }
 }
