@@ -6,6 +6,7 @@
   "scripts": {
     "test": "textlint --cache ./[!node_modules]*/**.md",
     "build": "node ./scripts/books/book-to-pdf/src/cli/index.js",
+    "mail": "node -r dotenv/config ./scripts/notification/mailer/index.js",
     "preview": "zenn preview"
   },
   "engines": {
@@ -22,9 +23,11 @@
   },
   "homepage": "https://github.com/tooppoo/zenn-docs#readme",
   "devDependencies": {
+    "dotenv": "10.0.0",
     "install": "0.13.0",
     "js-yaml": "4.1.0",
     "md-to-pdf": "4.0.1",
+    "nodemailer": "6.6.3",
     "npm": "7.23.0",
     "pino": "6.13.2",
     "prh-rules": "prh/rules",
