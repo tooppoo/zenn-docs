@@ -22,7 +22,7 @@ class CliArgument {
     return path.basename(this.targetBookDir)
   }
   get zennBookRoot() {
-    return path.basename(this.targetBookDir, this.bookId)
+    return path.dirname(this.targetBookDir)
   }
 
   get output() {
@@ -34,22 +34,24 @@ class CliArgument {
  * @param {CliArgument} argument 
  */
 async function processConversion(argument) {
-  const shelf = new ZennBookShelf(argument.zennBookRoot)
+  const bookId = argument.bookId
+  const output = argument.output
+  const bookRoot = argument.zennBookRoot
+
+  logger.debug({
+    argument,
+    bookId,
+    output,
+    bookRoot,
+  })
+
+  const shelf = new ZennBookShelf(bookRoot)
   const converter = new PdfConverter()
 
   const service = new ConvertBook(shelf, converter)
 
   try {
     logger.info('start book conversion process')
-
-    const bookId = argument.bookId
-    const output = argument.output
-
-    logger.debug({
-      argument,
-      bookId,
-      output,
-    })
 
     await service.convert(argument.bookId, argument.output)
 
