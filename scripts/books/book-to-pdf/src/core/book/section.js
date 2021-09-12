@@ -1,5 +1,5 @@
 
-export class Section {
+class Section {
   /**
    * @param {string} title 
    * @param {number} index 
@@ -11,3 +11,5 @@ export class Section {
     this.index = index
   }
 }
+
+exports.Section = Section

@@ -1,11 +1,11 @@
-import fs  from 'fs'
-import yaml from 'js-yaml'
-import path from 'path'
-import { Book } from '../../core/book/book'
-import { Section } from '../../core/book/section'
-import { logger } from '../../util/logger'
+const fs  = require('fs')
+const yaml = require('js-yaml')
+const path = require('path')
+const { Book } = require('../../core/book/book')
+const { Section } = require('../../core/book/section')
+const { logger } = require('../../util/logger')
 
-export class ZennBookShelf {
+class ZennBookShelf {
   /**
    * @param {string} rootPath 
    */
@@ -47,3 +47,5 @@ export class ZennBookShelf {
     }
   }
 }
+
+exports.ZennBookShelf = ZennBookShelf

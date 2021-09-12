@@ -1,4 +1,4 @@
-import { Book } from './book'
+const { Book } = require('./book')
 
 /**
  * @typedef {Object} BookShelf

@@ -1,3 +1,3 @@
-import loggerFactory from 'pino'
+const loggerFactory = require('pino')
 
-export const logger = loggerFactory()
+exports.logger = loggerFactory()

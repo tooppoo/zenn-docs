@@ -1,9 +1,9 @@
-import { logger } from '../../util/logger'
+const { logger } = require('../../util/logger')
 
 /**
  * book convert service
  */
-export class ConvertBook {
+class ConvertBook {
   /**
    * @param {import('../book/book-shelf').BookShelf} bookShelf
    * @param {Converter} converter 
@@ -45,3 +45,5 @@ export class ConvertBook {
     }
   }
 }
+
+exports.ConvertBook = ConvertBook

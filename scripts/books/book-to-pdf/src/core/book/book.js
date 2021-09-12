@@ -1,6 +1,6 @@
-import { Section } from './section'
+const { Section } = require('./section')
 
-export class Book {
+class Book {
   /**
    * @param {string} id 
    * @param {string} path 
@@ -31,3 +31,5 @@ export class Book {
     return this.sections.sort((a, b) => a.index - b.index)
   }
 }
+
+exports.Book = Book

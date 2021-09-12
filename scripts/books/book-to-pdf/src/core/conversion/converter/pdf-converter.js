@@ -1,12 +1,12 @@
-import { exec } from 'child_process'
-import path from 'path'
-import { logger } from '../../../util/logger'
-import { Book } from '../../book/book'
+const { exec } = require('child_process')
+const path = require('path')
+const { logger } = require('../../../util/logger')
+const { Book } = require('../../book/book')
 
 /**
  * @augments Converter
  */
-export class PdfConverter {
+class PdfConverter {
   /**
    * @inheritdoc
    * @param {Book} book
@@ -38,3 +38,5 @@ export class PdfConverter {
     })
   }
 }
+
+exports.PdfConverter = PdfConverter
