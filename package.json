@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "textlint --cache ./[!node_modules]*/**.md",
+    "build": "node ./scripts/books/book-to-pdf/src/cli/index.js",
     "preview": "zenn preview"
   },
   "engines": {

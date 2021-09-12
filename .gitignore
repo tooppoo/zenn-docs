@@ -2,3 +2,5 @@ node_modules
 .DS_Store
 .textlintcache
 *.log
+
+build/books/*.pdf
