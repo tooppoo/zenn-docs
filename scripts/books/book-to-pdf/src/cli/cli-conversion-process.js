@@ -16,7 +16,7 @@ class CliArgument {
   }
 
   get targetBookDir() {
-    return pathToAbs(this.args[1], this.cwd)
+    return pathToAbs(this.args[2], this.cwd)
   }
   get bookId() {
     return path.basename(this.targetBookDir)
@@ -26,7 +26,7 @@ class CliArgument {
   }
 
   get output() {
-    return pathToAbs(this.args[2], this.cwd)
+    return pathToAbs(this.args[3], this.cwd)
   }
 }
 
@@ -41,6 +41,15 @@ async function processConversion(argument) {
 
   try {
     logger.info('start book conversion process')
+
+    const bookId = argument.bookId
+    const output = argument.output
+
+    logger.debug({
+      argument,
+      bookId,
+      output,
+    })
 
     await service.convert(argument.bookId, argument.output)
 
