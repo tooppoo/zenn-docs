@@ -1,0 +1,83 @@
+@startuml model to build pdf from markdown
+package core {
+  package book {
+    class Book {
+      id: string
+      path: string
+    }
+    class Section {
+      title: string
+      index: number
+    }
+
+    Book o-r-> "n" Section
+
+    interface BookShelf {
+      find(id: string): Book
+    }
+    BookShelf ..> Book : build
+  }
+
+  package conversion {
+    class SerializedBook
+    interface BookSerializer
+    BookSerializer .u..> Book : serialize
+    BookSerializer ..> SerializedBook : serialized
+
+    interface Converter {
+      convert(book: SerializedBook, outPath: string)
+    }
+    Converter ..> SerializedBook : convert
+    Converter .l[hidden].> BookSerializer
+
+    class ConvertBook << service >>
+    ConvertBook ..> BookSerializer : use to serialize book
+    ConvertBook ..> Converter : convert serialized book
+    ConvertBook ..> BookShelf : use to get book
+
+    package converter {
+      class PDFConverter
+      PDFConverter .u.|> Converter
+    }
+  }
+}
+
+package app {
+  package zenn {
+    class ZennBookShelf
+    ZennBookShelf .u.|> BookShelf
+
+    class ZennBook {
+      path: string
+    }
+    class ZennBookConfig {
+      chapters: string[]
+    }
+    ZennBook o--> "1" ZennBookConfig
+    ZennBookShelf -r-> ZennBook : use to build Book
+
+    interface ZennBookLoader
+    ZennBookShelf ..> ZennBookLoader
+    ZennBookLoader .u.> ZennBook : build
+
+    package loader {
+      class FileSystemZennBookLoader {
+        root: string
+      }
+      FileSystemZennBookLoader .u.|> ZennBookLoader
+    }
+  }
+}
+
+package cli {
+  class CliArgument {
+    src: string
+    out: string
+  }
+
+  class CliConversionProcess
+  CliConversionProcess -r-> CliArgument : use to build objects
+}
+
+cli ..> core
+@enduml
