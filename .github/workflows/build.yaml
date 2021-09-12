@@ -58,5 +58,5 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: ${{ steps.build.outputs.book_version }}
-        path: /build/books/${{ steps.build.outputs.book_version }}.pdf
+        path: ./build/books/${{ steps.build.outputs.book_version }}.pdf
 
