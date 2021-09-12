@@ -3,8 +3,10 @@
 name: Build Pdf
 on:
   push:
+    branches-ignore:
+      - '**'
     tags:
-      - "*/v*.*.*"
+      - "*/v*"
 
 jobs:
   build:
