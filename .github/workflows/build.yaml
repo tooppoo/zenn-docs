@@ -50,7 +50,7 @@ jobs:
       run: |
         BOOK_VERSION=$(echo ${{ github.ref }} | sed -e "s#refs/tags/##g")
         BOOK=$(echo $BOOK_VERSION | sed -e "s#/v.*##g")
-        yarn build ./books/$BOOK ./build/books/$BOOK/$BOOK_VERSION.pdf
+        yarn build ./books/$BOOK ./build/books/$BOOK_VERSION.pdf
         echo ::set-output name=book::$BOOK
         echo ::set-output name=book_version::$BOOK_VERSION
 
