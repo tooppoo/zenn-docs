@@ -57,7 +57,13 @@ async function processConversion(argument) {
 
     logger.info('finish book conversion process')
   } catch (error) {
-    logger.error({ error }, 'failed book conversion process')
+    /** @var {Error} error */
+    logger.error({
+      error,
+      message: error.message,
+      name: error.name,
+      stack: error.stack
+    }, `failed book conversion process`)
   }
 }
 
