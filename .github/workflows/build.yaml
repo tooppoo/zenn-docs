@@ -48,7 +48,7 @@ jobs:
     - name: build pdf
       id: build
       run: |
-        BOOK_VERSION=$(echo ${{ github.ref }} | sed -e "s#refs/tags/##g")
+        BOOK_VERSION=$(echo ${{ github.ref }} | sed -e "s#refs/tags/##g" | sed -e "s#/#_#")
         BOOK=$(echo $BOOK_VERSION | sed -e "s#/v.*##g")
         yarn build ./books/$BOOK ./build/books/$BOOK_VERSION.pdf
         echo ::set-output name=book::$BOOK
