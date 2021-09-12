@@ -60,3 +60,16 @@ jobs:
         name: ${{ steps.build.outputs.book_version }}
         path: build/books/${{ steps.build.outputs.book_version }}.pdf
 
+    - name: Send Review Target
+      uses: devellany/send-mail@v1.0.2
+      with:
+        host: smtp.google.com
+        account: ${{secrets.NOTIFY_MAIL_ACCOUNT}}
+        password: ${{secrets.NOTIFY_MAIL_PASSWORD}}
+        sender: ${{secrets.NOTIFY_MAIL_SENDER}}
+        from: ${{secrets.NOTIFY_MAIL_ADDRESS}}
+        to: ${{secrets.NOTIFY_MAIL_TARGET}}
+        subject: ${{secrets.NOTIFY_MAIL_SUBJECT}}
+        body: ${{secrets.NOTIFY_MAIL_BODY}}
+        contentType: text/plain
+        attachments: '[{"path": "build/books/${{ steps.build.outputs.book_version }}.pdf" }]'
