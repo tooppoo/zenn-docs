@@ -45,7 +45,7 @@ class Serializer {
         serialized
       )
     
-      logger.info('success book serialization')
+      logger.info('succeed book serialization')
 
       return result
     } catch (error) {
