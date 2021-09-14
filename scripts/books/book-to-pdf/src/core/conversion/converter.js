@@ -1,5 +1,6 @@
+const { Book } = require('../book/book')
 
 /**
  * @typedef {Object} Converter
- * @prop {(book: import('../book/book').Book, outPath: string) => Promise<void>} convert
+ * @prop {(book: Book, outPath: string) => Promise<void>} convert
  */

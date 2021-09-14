@@ -1,3 +1,4 @@
+const { BookShelf }  = require('../book/book-shelf')
 const { logger } = require('../../util/logger')
 
 /**
@@ -5,7 +6,7 @@ const { logger } = require('../../util/logger')
  */
 class ConvertBook {
   /**
-   * @param {import('../book/book-shelf').BookShelf} bookShelf
+   * @param {BookShelf} bookShelf
    * @param {Converter} converter 
    */
   constructor(
@@ -14,7 +15,7 @@ class ConvertBook {
   ) {
     /**
      * @readonly
-     * @type {import('../book/book-shelf').BookShelf}
+     * @type {BookShelf}
      */
     this.bookShelf = bookShelf
     /**
