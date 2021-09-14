@@ -59,7 +59,7 @@ jobs:
     - name: archive pdf
       uses: actions/upload-artifact@v2
       with:
-        name: ${{ steps.build.outputs.book }}
+        name: ${{ steps.build.outputs.book_sl_version }}
         path: ./build/books/${{ steps.build.outputs.book_sl_version }}.pdf
 
     - name: Send Review Target
