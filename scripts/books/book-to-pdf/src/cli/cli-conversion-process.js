@@ -2,6 +2,9 @@ const path = require('path')
 const { ZennBookShelf } = require('../app/zenn/zenn-book-shelf')
 const { ConvertBook } = require('../core/conversion/convert-book')
 const { PdfConverter } = require('../core/conversion/converter/pdf-converter')
+const SerializerDecorator = require('../core/serializer/decorator')
+const { CatSerializer } = require('../core/serializer/kind/cat-serializer')
+const { Serializer } = require('../core/serializer/serializer')
 const { logger } = require('../util/logger')
 
 function pathToAbs(pathMaybeRel, cwd) {
@@ -46,9 +49,12 @@ async function processConversion(argument) {
   })
 
   const shelf = new ZennBookShelf(bookRoot)
+  const serializer = Serializer.by(CatSerializer)
+    .with(SerializerDecorator.ReplaceMetaTitleTopHeader)
+    .with(SerializerDecorator.WithoutMetaData)
   const converter = new PdfConverter()
 
-  const service = new ConvertBook(shelf, converter)
+  const service = new ConvertBook(shelf, serializer, converter)
 
   try {
     logger.info('start book conversion process')

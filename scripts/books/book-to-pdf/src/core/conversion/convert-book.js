@@ -9,13 +9,13 @@ const { logger } = require('../../util/logger')
 class ConvertBook {
   /**
    * @param {BookShelf} bookShelf
-   * @param {Converter} converter 
    * @param {Serializer} serializer
+   * @param {Converter} converter 
    */
   constructor(
     bookShelf,
-    converter,
-    serializer
+    serializer,
+    converter
   ) {
     /**
      * @readonly
@@ -24,14 +24,14 @@ class ConvertBook {
     this.bookShelf = bookShelf
     /**
      * @readonly
-     * @type {Converter}
-     */
-    this.converter = converter
-    /**
-     * @readonly
      * @type {Serializer}
      */
     this.serializer = serializer
+    /**
+     * @readonly
+     * @type {Converter}
+     */
+    this.converter = converter
   }
 
   /**
