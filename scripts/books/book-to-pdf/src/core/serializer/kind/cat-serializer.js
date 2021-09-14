@@ -1,5 +1,8 @@
 const { Book } = require('../../book/book');
-const { SerializedBook } = require('../serialized-book')
+const { SerializedBook, apply: applySerializedBook } = require('../serialized-book')
+const { exec } = require('child_process');
+const path = require('path');
+const { logger } = require('../../../util/logger');
 
 /**
  * @param {Book} book 
@@ -15,21 +18,15 @@ exports.CatSerializer = (book) => {
     try {
       exec(commandToConcatenate, (error, stdout, stderr) => {
         if (error) {
+          logger.error({ stderr })
+
           reject(error)
         } else {
-          resolve(stdout)
+          resolve(applySerializedBook(book, stdout))
         }
       })
     } catch (error) {
       reject(error)
     }
-  }).then(content => {
-    /**
-     * @type {SerializedBook}
-     */
-    const serialized = Object.create(content)
-    serialized.content = content
-
-    return serialized
   })
 }
