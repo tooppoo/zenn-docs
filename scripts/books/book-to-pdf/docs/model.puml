@@ -19,37 +19,45 @@ package core {
   }
 
   package serializer {
+    class SerializedBook {
+      id: string
+      contents: string
+    }
+
     interface Serializer {
       with(decorat:r SerializerDecorator): Serializer
-      serialize(book: Book): Promise<string>
+      serialize(book: Book): Promise<SerializedBook>
     }
     Serializer .u.> Book : serialize
+    Serializer .r.> SerializedBook : build
 
     package kind {
-      CatSerializer .u.|> Serializer
+      CatSerializer .l.|> Serializer
     }
 
     package decorator {
       interface SerializerDecorator << Function >> {
-        (serialized: string): string
+        (serialized: SerializedBook): SerializedBook
       }
 
       ReplaceMetaTitleToHeader .u.|> SerializerDecorator
       WithoutMetaData .u.|> SerializerDecorator
+
+      SerializerDecorator .u.> SerializedBook : decorate
     }
     Serializer ..> SerializerDecorator
-
   }
 
   package conversion {
     interface Converter {
-      convert(book: Book, outPath: string)
+      convert(book: SerializedBook, outPath: string)
     }
-    Converter ..> Book : convert
+    Converter ..> SerializedBook : convert
 
     class ConvertBook << service >>
     ConvertBook ..> Converter : convert serialized book
-    ConvertBook ..> BookShelf : use to get book
+    ConvertBook .r.> BookShelf : use to get book
+    ConvertBook ..> Serializer : use to serialize book
 
     package converter {
       class PDFConverter
