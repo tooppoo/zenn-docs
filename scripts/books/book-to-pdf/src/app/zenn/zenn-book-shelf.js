@@ -3,7 +3,7 @@ const yaml = require('js-yaml')
 const path = require('path')
 const { Book } = require('../../core/book/book')
 const { Section } = require('../../core/book/section')
-const { logger } = require('../../util/logger')
+const { logger } = require('../../../../../util/logger')
 
 class ZennBookShelf {
   /**

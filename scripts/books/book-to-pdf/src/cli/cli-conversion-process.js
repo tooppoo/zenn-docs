@@ -2,7 +2,7 @@ const path = require('path')
 const { ZennBookShelf } = require('../app/zenn/zenn-book-shelf')
 const { ConvertBook } = require('../core/conversion/convert-book')
 const { PdfConverter } = require('../core/conversion/converter/pdf-converter')
-const { logger } = require('../util/logger')
+const { logger } = require('../../../../util/logger')
 
 function pathToAbs(pathMaybeRel, cwd) {
   return path.isAbsolute(pathMaybeRel)
