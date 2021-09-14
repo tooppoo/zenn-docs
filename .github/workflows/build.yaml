@@ -50,17 +50,18 @@ jobs:
     - name: build pdf
       id: build
       run: |
-        BOOK_VERSION=$(echo ${{ github.ref }} | sed -e "s#refs/tags/##g" | sed -e "s#/#_#")
-        BOOK=$(echo $BOOK_VERSION | sed -e "s#_v.*##g")
-        yarn build ./books/$BOOK ./build/books/$BOOK_VERSION.pdf
+        BOOK_SL_VERSION=$(echo ${{ github.ref }} | sed -e "s#refs/tags/##g")
+        BOOK=$(echo $BOOK_SL_VERSION | sed -e "s#/v.*##g")
+        mkdir ./build/books/$BOOK
+        yarn build ./books/$BOOK ./build/books/$BOOK_SL_VERSION.pdf
+        tar -cvf ./build/books/$BOOK.zip ./build/books/$BOOK
         echo ::set-output name=book::$BOOK
-        echo ::set-output name=book_version::$BOOK_VERSION
 
     - name: archive pdf
       uses: actions/upload-artifact@v2
       with:
-        name: ${{ steps.build.outputs.book_version }}
-        path: build/books/${{ steps.build.outputs.book_version }}.pdf
+        name: ${{ steps.build.outputs.book }}
+        path: build/books/${{ steps.build.outputs.book }}.zip
 
     - name: Send Review Target
       if: ${{ github.event_name == 'release' }}
@@ -74,6 +75,6 @@ jobs:
           NOTIFY_MAIL_BCC=${{ secrets.NOTIFY_MAIL_BCC }}
           NOTIFY_MAIL_SUBJECT=${{ secrets.NOTIFY_MAIL_SUBJECT }}
           NOTIFY_MAIL_TEXT=${{ secrets.NOTIFY_MAIL_TEXT }}
-          NOTIFY_MAIL_FILES=build/books/${{ steps.build.outputs.book_version }}.pdf
+          NOTIFY_MAIL_FILES=build/books/${{ steps.build.outputs.book }}.zip
         EOF
         yarn mail

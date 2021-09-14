@@ -3,5 +3,6 @@ node_modules
 .textlintcache
 *.log
 
-build/books/*.pdf
+build/
+!build/.gitkeep
 .env
