@@ -1,6 +1,6 @@
-const { Book } = require('../book/book')
+const { SerializedBook } = require('../serializer/serialized-book')
 
 /**
  * @typedef {Object} Converter
- * @prop {(book: Book, outPath: string) => Promise<void>} convert
+ * @prop {(book: SerializedBook, outPath: string) => Promise<void>} convert
  */

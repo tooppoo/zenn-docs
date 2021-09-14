@@ -1,5 +1,6 @@
 const { logger } = require('../../util/logger')
 const { Book } = require('../book/book')
+const { SerializedBook } = require('./serialized-book')
 
 /**
  * @abstract

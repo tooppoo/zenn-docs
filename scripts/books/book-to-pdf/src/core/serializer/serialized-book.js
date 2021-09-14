@@ -25,3 +25,5 @@ const apply = (book, content) => {
 
   return serialized
 }
+
+exports.apply = apply

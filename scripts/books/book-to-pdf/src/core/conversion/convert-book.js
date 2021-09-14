@@ -1,4 +1,6 @@
 const { BookShelf }  = require('../book/book-shelf')
+const { Converter } = require('./converter')
+const { Serializer } = require('../serializer/serializer')
 const { logger } = require('../../util/logger')
 
 /**
@@ -8,10 +10,12 @@ class ConvertBook {
   /**
    * @param {BookShelf} bookShelf
    * @param {Converter} converter 
+   * @param {Serializer} serializer
    */
   constructor(
     bookShelf,
-    converter
+    converter,
+    serializer
   ) {
     /**
      * @readonly
@@ -20,9 +24,14 @@ class ConvertBook {
     this.bookShelf = bookShelf
     /**
      * @readonly
-     * @typedef {Converter}
+     * @type {Converter}
      */
     this.converter = converter
+    /**
+     * @readonly
+     * @type {Serializer}
+     */
+    this.serializer = serializer
   }
 
   /**
@@ -36,7 +45,8 @@ class ConvertBook {
       logger.info('start book conversion')
 
       const book = await this.bookShelf.find(bookId)
-      await this.converter.convert(book, to)
+      const serialized = await this.serializer.serialize(book)
+      await this.converter.convert(serialized, to)
 
       logger.info('succeed book conversion')
     } catch (error) {

@@ -1,4 +1,5 @@
 const { Book } = require('../../book/book');
+const { SerializedBook } = require('../serialized-book')
 
 /**
  * @param {Book} book 
