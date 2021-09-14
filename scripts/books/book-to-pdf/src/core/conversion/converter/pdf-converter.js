@@ -18,13 +18,15 @@ class PdfConverter {
     const sectionPaths = book.orderedSections.map(
       sec => path.resolve(book.path, `${sec.title}.md`)
     )
-    // const command = `cat ${sectionPaths.join(' ')} | md-to-pdf > ${outPath}`
-    // const command = `cat ${sectionPaths.join(' ')} | md-to-pdf`
-    const command = `cat ${sectionPaths.join(' ')}`
+    const commandToConcatenate = `cat ${sectionPaths.join(' ')}`
+    logger.debug({ book, outPath, command: commandToConcatenate })
 
-    logger.debug({ book, outPath, command })
-
-    const content = await this.concatContent(command)
+    const concatenatedContent = await this.concatContent(commandToConcatenate)
+    // remove metadata
+    const content = concatenatedContent
+      .replace(/-+\n/g, '')
+      .replace(/title:(.+)\n/g, `# $1\n`)
+      .replace(/[a-zA-Z]+: .+\n/g, '')
 
     await this.markdownToPdf(content, outPath)
   }
@@ -66,6 +68,7 @@ class PdfConverter {
    */
   async markdownToPdf(content, outPath) {
     logger.info('start pdf conversion')
+    logger.debug({ content, outPath })
 
     try {
       await mdToPdf({ content }, { dest: outPath })
