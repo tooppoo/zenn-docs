@@ -30,8 +30,8 @@ package core {
     }
 
     package decorator {
-      interface SerializerDecorator {
-        decorate(serialized: string): string
+      interface SerializerDecorator << Function >> {
+        (serialized: string): string
       }
 
       ReplaceMetaTitleToHeader .u.|> SerializerDecorator
