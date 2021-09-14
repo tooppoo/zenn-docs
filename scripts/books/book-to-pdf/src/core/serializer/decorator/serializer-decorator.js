@@ -1,5 +1,4 @@
 
 /**
- * @typedef SerializerDecorator
- * @prop {(serialized: string) => string} decorate
+ * @typedef {(serialized: string) => string} SerializerDecorator
  */
