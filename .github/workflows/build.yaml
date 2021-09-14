@@ -52,14 +52,17 @@ jobs:
       run: |
         BOOK_SL_VERSION=$(echo ${{ github.ref }} | sed -e "s#refs/tags/##g")
         BOOK=$(echo $BOOK_SL_VERSION | sed -e "s#/v.*##g")
+        VERSION=$(echo $BOOK_SL_VERSION | sed -e "s#$BOOK/##g")
         mkdir ./build/books/$BOOK
         yarn build ./books/$BOOK ./build/books/$BOOK_SL_VERSION.pdf
+        echo ::set-output name=book::$BOOK
+        echo ::set-output name=version::$VERSION
         echo ::set-output name=book_sl_version::$BOOK_SL_VERSION
 
     - name: archive pdf
       uses: actions/upload-artifact@v2
       with:
-        name: ${{ steps.build.outputs.book_sl_version }}
+        name: ${{ steps.build.outputs.book }}_${{ steps.build.outputs.version }}
         path: ./build/books/${{ steps.build.outputs.book_sl_version }}.pdf
 
     - name: Send Review Target
