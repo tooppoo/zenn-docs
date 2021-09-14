@@ -24,8 +24,8 @@ class PdfConverter {
     const concatenatedContent = await this.concatContent(commandToConcatenate)
     // remove metadata
     const content = concatenatedContent
-      .replace(/-+\n/g, '')
-      .replace(/title:(.+)\n/g, `# $1\n`)
+      .replace(/-+\n/g, '\n')
+      .replace(/title:\s+(.+)\n/g, `# $1\n`)
       .replace(/[a-zA-Z]+: .+\n/g, '')
 
     await this.markdownToPdf(content, outPath)
