@@ -18,6 +18,29 @@ package core {
     BookShelf ..> Book : build
   }
 
+  package serializer {
+    interface Serializer {
+      with(decorat:r SerializerDecorator): Serializer
+      serialize(book: Book): Promise<string>
+    }
+    Serializer .u.> Book : serialize
+
+    package kind {
+      CatSerializer .u.|> Serializer
+    }
+
+    package decorator {
+      interface SerializerDecorator {
+        decorate(serialized: string): string
+      }
+
+      ReplaceMetaTitleToHeader .u.|> SerializerDecorator
+      WithoutMetaData .u.|> SerializerDecorator
+    }
+    Serializer ..> SerializerDecorator
+
+  }
+
   package conversion {
     interface Converter {
       convert(book: Book, outPath: string)
