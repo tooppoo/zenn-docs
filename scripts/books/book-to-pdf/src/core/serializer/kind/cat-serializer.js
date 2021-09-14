@@ -2,7 +2,7 @@ const { Book } = require('../../book/book');
 
 /**
  * @param {Book} book 
- * @returns {Promise<string>}
+ * @returns {Promise<SerializedBook>}
  */
 exports.CatSerializer = (book) => {
   const sectionPaths = book.orderedSections.map(
@@ -22,5 +22,13 @@ exports.CatSerializer = (book) => {
     } catch (error) {
       reject(error)
     }
+  }).then(content => {
+    /**
+     * @type {SerializedBook}
+     */
+    const serialized = Object.create(content)
+    serialized.content = content
+
+    return serialized
   })
 }

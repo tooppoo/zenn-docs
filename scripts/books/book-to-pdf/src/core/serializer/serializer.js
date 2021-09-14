@@ -31,7 +31,7 @@ class Serializer {
 
   /**
    * @param {Book} book 
-   * @return {Promise<string>}
+   * @return {Promise<SerializedBook>}
    */
   async serialize(book) {
     logger.info('start book serialization')
