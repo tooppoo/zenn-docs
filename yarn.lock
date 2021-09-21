@@ -438,11 +438,6 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.9.1.tgz#0611b37db4246c937feef529ddcc018cf8e35708"
   integrity sha512-QpLcX9ZSsq3YYUUnD3nFDY8H7wctAhQj/TFKL8Ya8v5fMm3CFXxo8zStsLAl780ltoYoo1WvKUVGBQK+1ifr7g==
 
-"@types/prismjs@^1.16.1":
-  version "1.16.2"
-  resolved "https://registry.yarnpkg.com/@types/prismjs/-/prismjs-1.16.2.tgz"
-  integrity sha512-1M/j21xgTde7RPtpJVQebW5rzrquj7S+wnqt4x9uWrIPpr0Ya/uXypcqC2aUQL5gtLXFCKSH7GnjfAijMdfbuA==
-
 "@types/structured-source@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/structured-source/-/structured-source-3.0.0.tgz"
@@ -3984,10 +3979,10 @@ prh@^5.4.3, prh@^5.4.4:
     diff "^4.0.1"
     js-yaml "^3.9.1"
 
-prismjs@^1.24.1:
-  version "1.24.1"
-  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.24.1.tgz"
-  integrity sha512-mNPsedLuk90RVJioIky8ANZEwYm5w9LcvCXrxHlwf4fNVSn8jEipMybMkWUyyF0JhnC+C4VcOVSBuHRKs1L5Ow==
+prismjs@^1.25.0:
+  version "1.25.0"
+  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.25.0.tgz#6f822df1bdad965734b310b315a23315cf999756"
+  integrity sha512-WCjJHl1KEWbnkQom1+SzftbtXMKQoezOCYs5rECqMN+jP+apI7ftoflyqigqzopSO3hMhTEb0mFClA8lkolgEg==
 
 proc-log@^1.0.0:
   version "1.0.0"
@@ -5367,10 +5362,10 @@ yauzl@^2.10.0:
     buffer-crc32 "~0.2.3"
     fd-slicer "~1.1.0"
 
-zenn-cli@0.1.95:
-  version "0.1.95"
-  resolved "https://registry.yarnpkg.com/zenn-cli/-/zenn-cli-0.1.95.tgz#d8ddb8e5e345a946c77677b56bb14966e050ee83"
-  integrity sha512-8VwvMyMvqg4IEIk0qKTfB9N5LnR9wQMkuJc4jBDlf/NeVgcs53GORyjlAJ8unAtW6sUGdPa3vqpB/DPnZW4Guw==
+zenn-cli@0.1.96:
+  version "0.1.96"
+  resolved "https://registry.yarnpkg.com/zenn-cli/-/zenn-cli-0.1.96.tgz#78f2d0a4f495fc2e5780d804dd8a3731ed7e13c0"
+  integrity sha512-bPHOdIi2TF26Zx4p1kIerMAXHBYZTdvSQuQCubSoSmHw4coKECc1Ju0bgblIF4GfxSZzpLuBBKzqtBR4yeu2bQ==
   dependencies:
     arg "^5.0.0"
     cheerio "^1.0.0-rc.10"
@@ -5386,16 +5381,15 @@ zenn-cli@0.1.95:
     node-fetch "^2.6.1"
     open "^8.2.0"
     ws "^7.4.6"
-    zenn-markdown-html "^0.1.95"
+    zenn-markdown-html "^0.1.96"
 
-zenn-markdown-html@^0.1.95:
-  version "0.1.95"
-  resolved "https://registry.yarnpkg.com/zenn-markdown-html/-/zenn-markdown-html-0.1.95.tgz#21bace0a16525f992aa8a717f7466dddd926ad16"
-  integrity sha512-FZ8YZTfdVb3lJSbgjb7w6Pe+GrM0DpPnJu7FF+ZrFEkdtSyGtbtxQSSWmvkBorc7VN/Wj4MGsb/Oou1uafmtBQ==
+zenn-markdown-html@^0.1.96:
+  version "0.1.96"
+  resolved "https://registry.yarnpkg.com/zenn-markdown-html/-/zenn-markdown-html-0.1.96.tgz#07d693e33e4c3bee035c6cd7effd3681e4e8aab5"
+  integrity sha512-o8RfvVxXLmXuK07/9FczUdOUSvZa6YvqT8C31AcuDEqLTUv+5kBWvU1GjQOD68AZHLaESZdEvOT1BQbztpzSYw==
   dependencies:
     "@steelydylan/markdown-it-imsize" "^1.0.2"
     "@steelydylan/prism-diff-highlight" "1.0.4"
-    "@types/prismjs" "^1.16.1"
     markdown-it "^11.0.0"
     markdown-it-anchor "^8.1.2"
     markdown-it-container "^2.0.0"
@@ -5403,7 +5397,7 @@ zenn-markdown-html@^0.1.95:
     markdown-it-inline-comments "^1.0.1"
     markdown-it-link-attributes "^3.0.0"
     markdown-it-task-lists "^2.1.1"
-    prismjs "^1.24.1"
+    prismjs "^1.25.0"
 
 zlibjs@^0.3.1:
   version "0.3.1"
