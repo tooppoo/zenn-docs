@@ -5359,10 +5359,10 @@ yauzl@^2.10.0:
     buffer-crc32 "~0.2.3"
     fd-slicer "~1.1.0"
 
-zenn-cli@0.1.96:
-  version "0.1.96"
-  resolved "https://registry.yarnpkg.com/zenn-cli/-/zenn-cli-0.1.96.tgz#78f2d0a4f495fc2e5780d804dd8a3731ed7e13c0"
-  integrity sha512-bPHOdIi2TF26Zx4p1kIerMAXHBYZTdvSQuQCubSoSmHw4coKECc1Ju0bgblIF4GfxSZzpLuBBKzqtBR4yeu2bQ==
+zenn-cli@0.1.97:
+  version "0.1.97"
+  resolved "https://registry.yarnpkg.com/zenn-cli/-/zenn-cli-0.1.97.tgz#e6996f7211499becf48228d6c2c2648a2dcbc5ab"
+  integrity sha512-8vRGAnlxQ+I0Zb3cu85xUkIsk4rowXlxaZuFQmd4da/XSpFOOu4b4woJrgMDovkfQOIrgQcPcbp/kt2am5oeAQ==
   dependencies:
     arg "^5.0.0"
     cheerio "^1.0.0-rc.10"
@@ -5378,12 +5378,12 @@ zenn-cli@0.1.96:
     node-fetch "^2.6.1"
     open "^8.2.0"
     ws "^7.4.6"
-    zenn-markdown-html "^0.1.96"
+    zenn-markdown-html "^0.1.97"
 
-zenn-markdown-html@^0.1.96:
-  version "0.1.96"
-  resolved "https://registry.yarnpkg.com/zenn-markdown-html/-/zenn-markdown-html-0.1.96.tgz#07d693e33e4c3bee035c6cd7effd3681e4e8aab5"
-  integrity sha512-o8RfvVxXLmXuK07/9FczUdOUSvZa6YvqT8C31AcuDEqLTUv+5kBWvU1GjQOD68AZHLaESZdEvOT1BQbztpzSYw==
+zenn-markdown-html@^0.1.97:
+  version "0.1.97"
+  resolved "https://registry.yarnpkg.com/zenn-markdown-html/-/zenn-markdown-html-0.1.97.tgz#1c4cc34bceb1d16e240ad5ceca872d76acb5c12e"
+  integrity sha512-qbg+tKX5ddoG5vkggAkrQJ/6+HGz2Uh/GV56znEzwy4haVh20NVDFdc5crMpX//RZk9wE03pv/veRPPDoqzG9A==
   dependencies:
     "@steelydylan/markdown-it-imsize" "^1.0.2"
     "@steelydylan/prism-diff-highlight" "1.0.4"
