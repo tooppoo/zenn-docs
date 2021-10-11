@@ -27,7 +27,7 @@
     "install": "0.13.0",
     "js-yaml": "4.1.0",
     "md-to-pdf": "5.0.0",
-    "nodemailer": "6.6.5",
+    "nodemailer": "6.7.0",
     "npm": "7.24.2",
     "pino": "6.13.3",
     "prh-rules": "prh/rules",
