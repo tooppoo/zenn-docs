@@ -103,5 +103,11 @@ https://ja.stackoverflow.com/questions/65708/rust%E3%81%AEresult%E3%81%AB%E3%81%
 [^3]: https://doc.rust-jp.rs/book-ja/ch04-01-what-is-ownership.html `"コードが関数を呼び出すと、関数に渡された値(ヒープのデータへのポインタも含まれる可能性あり)と、 関数のローカル変数がスタックに載ります。関数の実行が終了すると、それらの値はスタックから取り除かれます"`
 [^4]: https://brain.cc.kogakuin.ac.jp/~kanamaru/lecture/MP/final/part06/node9.html `"square 関数が終了するとスタック領域は図 7(c) のようになり、 戻り値 $v0 の値が変数 b に代入されてプログラムが終了する。"`
 
+以上のことから、 `str` を関数の引数および戻り値として扱うことはできない。しかし実際には、文字列を、より正確には文字列スライスを引数や戻り値に用いたいケースはあるし、実際、冒頭のRustドキュメントで提示されているのはそうした例である。
+
+そこで、 `str` ではなくその参照である `&str` を用いることで、文字列(スライス)を引数および戻り値に利用できる。というのも、ポインタ型データのサイズは「ポインタのサイズ + ポインタが指すデータ型のサイズ」として事前に決定できるから、すなわち固定長だからである[^5]。
+
+[^5]: https://ja.stackoverflow.com/questions/65708/rustのresultについての質問-errore0277-the-size-for-values-of-type-str-cannot-be-kno `"そこで &str とポインタを介すると16バイト（ポインタサイズ8バイト+strのサイズ8バイト）と定サイズになるのでエラーにならなくなります。"`
+
 # 記事として整理する前のスクラップ
 https://zenn.dev/philomagi/scraps/0adf7ed2117368
