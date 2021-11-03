@@ -16,7 +16,7 @@ fn first_word(s: &String) -> &str
 
 この時、戻り値の型として定義されているのは、 `str` ではなく、 `str` への参照である `&str` だ。 `usize` を返す場合は `&usize` を使うのではなく、単に `usize` をそのまま返すものとして定義されているし、実際そう実装できる。
 
-では、 `str` を直接返すようにするとどうなるかというと、以下のようなメッセージを出しながらコンパイルエラーとなる。
+この時、次のような疑問を抱いた。「`usize` はそのまま参照ではなく`usize` を返すことができるし、引数として受け取ることもできる。それと同じように、`&str` ではなく `str` を直接引数として受け取ったり戻り値で返したりすることはできるだろうか」。そこで、実際に `str` を直接返すようにしてみたところ、以下のようなメッセージを出しながらコンパイルエラーとなった。
 
 ```
 error[E0277]: the size for values of type `str` cannot be known at compilation time
@@ -47,7 +47,7 @@ help: function arguments must have a statically known size, borrowed types alway
 
 # 疑問点
 なぜ、 `str` はそのまま関数の引数および戻り値として使えないのか？
-`&str` を使えば引数と戻り値どちらにも利用できるし、実際他のサンプルでも基本的に `&str` を使っているようだが、ではこの `&str` は何を指す参照なのか？
+`&str` を使えば引数と戻り値どちらにも利用できるし、実際他のサンプルでも基本的に `&str` を使っているようだが、ではこの `&str` は何を指す参照で、なぜ参照にすれば引数と戻り値両方で利用できるのか？
 
 "the size for values of type `str` cannot be known at compilation time" というエラーメッセージが共通で出ているが、ここで言う "size" とは何で、それがコンパイル時とどう関わっているのか？
 
