@@ -29,7 +29,7 @@ error[E0277]: the size for values of type `str` cannot be known at compilation t
    = note: the return type of a function must have a statically known size
 ```
 
-試しに引数を `str` にした場合も、同様のエラーとなる[^1]。
+試しに引数を `str` にした場合も、同様のエラーとなる。
 
 [^1]: 戻り値 https://doc.rust-jp.rs/rust-by-example-ja/scope/lifetime/static_lifetime.html
 
