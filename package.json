@@ -5,8 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "textlint --cache ./[!node_modules]*/**.md",
-    "build": "node ./scripts/books/book-to-pdf/src/cli/index.js",
-    "mail": "node -r dotenv/config ./scripts/notification/mailer/index.js",
     "preview": "zenn preview"
   },
   "engines": {
@@ -26,8 +24,6 @@
     "dotenv": "10.0.0",
     "install": "0.13.0",
     "js-yaml": "4.1.0",
-    "md-to-pdf": "5.0.0",
-    "nodemailer": "6.7.0",
     "npm": "7.24.2",
     "pino": "6.13.3",
     "prh-rules": "prh/rules",
