@@ -4336,10 +4336,10 @@ textlint-rule-ja-no-mixed-period@2.1.1:
     check-ends-with-period "^1.0.1"
     textlint-rule-helper "^2.0.0"
 
-textlint-rule-no-double-negative-ja@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/textlint-rule-no-double-negative-ja/-/textlint-rule-no-double-negative-ja-2.0.0.tgz#68bf25027fb1626393cba9aa18b3bb245cdaea68"
-  integrity sha512-czi6ung/vpSaxGjrgbBN6iapIqd50tqBbsWaIvonhv2cHe1qAqgqS9C02YrSZPjnX7fkxs4pKQr4p+qK1rGzGA==
+textlint-rule-no-double-negative-ja@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/textlint-rule-no-double-negative-ja/-/textlint-rule-no-double-negative-ja-2.0.1.tgz#3784a958dd9e625cca078c73de278dbfe69e7f79"
+  integrity sha512-LRofmNt+nd2mp+AHmG0ltk9AlbzKbWPE+EToYQ1zORCd8N8suE1YxNEplz9OeQ59ea9ITtudDIWoqeHaZnbDsg==
   dependencies:
     kuromojin "^3.0.0"
 
