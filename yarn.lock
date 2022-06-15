@@ -706,6 +706,30 @@ cacache@^16.1.0:
     tar "^6.1.11"
     unique-filename "^1.1.1"
 
+cacache@^16.1.1:
+  version "16.1.1"
+  resolved "https://registry.yarnpkg.com/cacache/-/cacache-16.1.1.tgz#4e79fb91d3efffe0630d5ad32db55cc1b870669c"
+  integrity sha512-VDKN+LHyCQXaaYZ7rA/qtkURU+/yYhviUdvqEv2LT6QPZU8jpyzEkEVAcKlKLt5dJ5BRp11ym8lo3NKLluEPLg==
+  dependencies:
+    "@npmcli/fs" "^2.1.0"
+    "@npmcli/move-file" "^2.0.0"
+    chownr "^2.0.0"
+    fs-minipass "^2.1.0"
+    glob "^8.0.1"
+    infer-owner "^1.0.4"
+    lru-cache "^7.7.1"
+    minipass "^3.1.6"
+    minipass-collect "^1.0.2"
+    minipass-flush "^1.0.5"
+    minipass-pipeline "^1.2.4"
+    mkdirp "^1.0.4"
+    p-map "^4.0.0"
+    promise-inflight "^1.0.1"
+    rimraf "^3.0.2"
+    ssri "^9.0.0"
+    tar "^6.1.11"
+    unique-filename "^1.1.1"
+
 call-bind@^1.0.0, call-bind@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/call-bind/-/call-bind-1.0.2.tgz#b1d4e89e688119c3c9a903ad30abb2f6a919be3c"
@@ -1969,10 +1993,10 @@ make-fetch-happen@^10.0.3, make-fetch-happen@^10.0.6:
     socks-proxy-agent "^6.1.1"
     ssri "^8.0.1"
 
-make-fetch-happen@^10.1.6:
-  version "10.1.6"
-  resolved "https://registry.yarnpkg.com/make-fetch-happen/-/make-fetch-happen-10.1.6.tgz#22b3ac3b077a7cfa80525af12e637e349f21d26e"
-  integrity sha512-/iKDlRQF0fkxyB/w/duW2yRYrGwBcbJjC37ijgi0CmOZ32bzMc86BCSSAHWvuyRFCB408iBPziTSzazBSrKo3w==
+make-fetch-happen@^10.1.7:
+  version "10.1.7"
+  resolved "https://registry.yarnpkg.com/make-fetch-happen/-/make-fetch-happen-10.1.7.tgz#b1402cb3c9fad92b380ff3a863cdae5414a42f76"
+  integrity sha512-J/2xa2+7zlIUKqfyXDCXFpH3ypxO4k3rgkZHPSZkyUYcBT/hM80M3oyKLM/9dVriZFiGeGGS2Ei+0v2zfhqj3Q==
   dependencies:
     agentkeepalive "^4.2.1"
     cacache "^16.1.0"
@@ -1988,7 +2012,7 @@ make-fetch-happen@^10.1.6:
     minipass-pipeline "^1.2.4"
     negotiator "^0.6.3"
     promise-retry "^2.0.1"
-    socks-proxy-agent "^6.1.1"
+    socks-proxy-agent "^7.0.0"
     ssri "^9.0.0"
 
 markdown-table@^2.0.0:
@@ -2490,10 +2514,10 @@ npm-user-validate@^1.0.1:
   resolved "https://registry.yarnpkg.com/npm-user-validate/-/npm-user-validate-1.0.1.tgz#31428fc5475fe8416023f178c0ab47935ad8c561"
   integrity sha512-uQwcd/tY+h1jnEaze6cdX/LrhWhoBxfSknxentoqmIuStxUExxjWd3ULMLFPiFUrZKbOVMowH6Jq2FRWfmhcEw==
 
-npm@8.12.1:
-  version "8.12.1"
-  resolved "https://registry.yarnpkg.com/npm/-/npm-8.12.1.tgz#624064fa7a8e0730223f6b2effe087e7127d567b"
-  integrity sha512-0yOlhfgu1UzP6UijnaFuIS2bES2H9D90EA5OVsf2iOZw7VBrjntXKEwKfCaFA6vMVWkCP8qnPwCxxPdnDVwlNw==
+npm@8.12.2:
+  version "8.12.2"
+  resolved "https://registry.yarnpkg.com/npm/-/npm-8.12.2.tgz#d9be9d6368b0bd9d0e963b25a662c79909ca8bbf"
+  integrity sha512-TArexqro9wpl/6wz6t6YdYhOoiy/UArqiSsSsqI7fieEhQEswDQSJcgt/LuCDjl6mfCDi0So7S2UZ979qLYRPg==
   dependencies:
     "@isaacs/string-locale-compare" "^1.1.0"
     "@npmcli/arborist" "^5.0.4"
@@ -2505,7 +2529,7 @@ npm@8.12.1:
     "@npmcli/run-script" "^3.0.1"
     abbrev "~1.1.1"
     archy "~1.0.0"
-    cacache "^16.1.0"
+    cacache "^16.1.1"
     chalk "^4.1.2"
     chownr "^2.0.0"
     cli-columns "^4.0.0"
@@ -2530,7 +2554,7 @@ npm@8.12.1:
     libnpmsearch "^5.0.2"
     libnpmteam "^4.0.2"
     libnpmversion "^3.0.1"
-    make-fetch-happen "^10.1.6"
+    make-fetch-happen "^10.1.7"
     minipass "^3.1.6"
     minipass-pipeline "^1.2.4"
     mkdirp "^1.0.4"
@@ -3235,7 +3259,7 @@ slice-ansi@^4.0.0:
     astral-regex "^2.0.0"
     is-fullwidth-code-point "^3.0.0"
 
-smart-buffer@^4.1.0:
+smart-buffer@^4.1.0, smart-buffer@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/smart-buffer/-/smart-buffer-4.2.0.tgz#6e1d71fa4f18c05f7d0ff216dd16a481d0e8d9ae"
   integrity sha512-94hK0Hh8rPqQl2xXc3HsaBoOXKV20MToPkcXvwbISWLEs+64sBq5kFgn2kJDHb1Pry9yrP0dxrCI9RRci7RXKg==
@@ -3249,6 +3273,15 @@ socks-proxy-agent@^6.1.1:
     debug "^4.3.1"
     socks "^2.6.1"
 
+socks-proxy-agent@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/socks-proxy-agent/-/socks-proxy-agent-7.0.0.tgz#dc069ecf34436621acb41e3efa66ca1b5fed15b6"
+  integrity sha512-Fgl0YPZ902wEsAyiQ+idGd1A7rSFx/ayC1CQVMw5P+EQx2V0SgpGtf6OKFhVjPflPUl9YMmEOnmfjCdMUsygww==
+  dependencies:
+    agent-base "^6.0.2"
+    debug "^4.3.3"
+    socks "^2.6.2"
+
 socks@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/socks/-/socks-2.6.1.tgz#989e6534a07cf337deb1b1c94aaa44296520d30e"
@@ -3256,6 +3289,14 @@ socks@^2.6.1:
   dependencies:
     ip "^1.1.5"
     smart-buffer "^4.1.0"
+
+socks@^2.6.2:
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/socks/-/socks-2.6.2.tgz#ec042d7960073d40d94268ff3bb727dc685f111a"
+  integrity sha512-zDZhHhZRY9PxRruRMR7kMhnf3I8hDs4S3f9RecfnGxvcBHQcKcIH/oUcEWffsfl1XxdYlA7nnlGbbTvPz9D8gA==
+  dependencies:
+    ip "^1.1.5"
+    smart-buffer "^4.2.0"
 
 sonic-boom@^2.2.1:
   version "2.3.0"
