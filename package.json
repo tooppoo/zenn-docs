@@ -23,7 +23,7 @@
   "devDependencies": {
     "dotenv": "16.0.1",
     "js-yaml": "4.1.0",
-    "npm": "8.16.0",
+    "npm": "8.17.0",
     "pino": "7.11.0",
     "prh-rules": "prh/rules",
     "textlint": "12.2.1",
