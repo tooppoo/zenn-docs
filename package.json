@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/tooppoo/zenn-docs#readme",
   "devDependencies": {
-    "dotenv": "16.0.1",
+    "dotenv": "16.0.2",
     "js-yaml": "4.1.0",
     "npm": "8.18.0",
     "pino": "7.11.0",
