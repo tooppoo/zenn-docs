@@ -768,6 +768,13 @@ check-ends-with-period@^1.0.1:
     emoji-regex "^6.4.1"
     end-with "^1.0.2"
 
+check-ends-with-period@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/check-ends-with-period/-/check-ends-with-period-2.0.1.tgz#818e60652875d735c4ecdc3da99d9c9fa5d182e9"
+  integrity sha512-ZXEB+OLEAnRu9JCt/aMHNU9Q/BNYDCJrhcQli+JN95K08rGGEMVZc+W75/op8JyKrCKk/WV8Whuo8qjLIDcPeA==
+  dependencies:
+    emoji-regex "^10.1.0"
+
 chownr@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-2.0.0.tgz#15bfbe53d2eab4cf70f18a8cd68ebe5b3cb1dece"
@@ -1004,6 +1011,11 @@ duplexify@^4.1.2:
     inherits "^2.0.3"
     readable-stream "^3.1.1"
     stream-shift "^1.0.0"
+
+emoji-regex@^10.1.0:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-10.1.0.tgz#d50e383743c0f7a5945c47087295afc112e3cf66"
+  integrity sha512-xAEnNCT3w2Tg6MA7ly6QqYJvEoY1tm9iIjJ3yMKK9JPlWuRHAMoe5iETwQnx3M9TVbFMfsrBgWKR+IsmswwNjg==
 
 emoji-regex@^6.4.1:
   version "6.5.1"
@@ -3643,12 +3655,12 @@ textlint-rule-no-mix-dearu-desumasu@5.0.0:
     textlint-rule-helper "^2.0.0"
     unist-util-visit "^3.0.0"
 
-textlint-rule-period-in-list-item@0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/textlint-rule-period-in-list-item/-/textlint-rule-period-in-list-item-0.3.2.tgz#17f7461554f596408e384d34b12e42d7d3506949"
-  integrity sha512-47yQZ14SbNfyBGKcSV/89eXwxLlGIwj8WzbKk1jvDh/uPy59skVfFbWoF4tUn09mYnRyVldMsdqB0llYgQMLUA==
+textlint-rule-period-in-list-item@0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/textlint-rule-period-in-list-item/-/textlint-rule-period-in-list-item-0.3.3.tgz#a92bc2bf784b1b9c601d12d70b3e9c92f7928159"
+  integrity sha512-XVm7E2riBggmyMPiLPQZwXxwFngi5WozWrZqctjN43uz9GykOyrqaHACGsLou2cJqa6nwQxqxewl2OOf/G64eA==
   dependencies:
-    check-ends-with-period "^1.0.1"
+    check-ends-with-period "^2.0.1"
 
 textlint-rule-prh@5.3.0, textlint-rule-prh@^5.3.0:
   version "5.3.0"
