@@ -26,7 +26,7 @@
     "npm": "8.19.3",
     "pino": "8.8.0",
     "prh-rules": "prh/rules",
-    "textlint": "12.2.4",
+    "textlint": "12.3.0",
     "textlint-filter-rule-allowlist": "4.0.0",
     "textlint-rule-footnote-order": "1.0.3",
     "textlint-rule-ja-no-abusage": "3.0.0",
