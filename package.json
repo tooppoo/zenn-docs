@@ -24,7 +24,7 @@
     "dotenv": "16.3.1",
     "js-yaml": "4.1.0",
     "npm": "8.19.4",
-    "pino": "8.14.1",
+    "pino": "8.14.2",
     "prh-rules": "prh/rules",
     "textlint": "12.6.1",
     "textlint-filter-rule-allowlist": "4.0.0",
