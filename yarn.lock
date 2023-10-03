@@ -4148,10 +4148,10 @@ yallist@^4.0.0:
   resolved "https://registry.yarnpkg.com/yallist/-/yallist-4.0.0.tgz#9bb92790d9c0effec63be73519e11a35019a3a72"
   integrity sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==
 
-zenn-cli@0.1.146:
-  version "0.1.146"
-  resolved "https://registry.yarnpkg.com/zenn-cli/-/zenn-cli-0.1.146.tgz#8a1d2c26add5348bef6be7919d1e8e31c999fe89"
-  integrity sha512-IjxTGvaatNpaTl/3spegOqSIOZOZG+QAllbQjlsgS3yxKRWZZ4dl2XRpTpaI5Qg9E4NCuX5EZ9+SM+9cxdzSgQ==
+zenn-cli@0.1.147:
+  version "0.1.147"
+  resolved "https://registry.yarnpkg.com/zenn-cli/-/zenn-cli-0.1.147.tgz#52ad816b2ac0b479c475af4c82d0c63ba0077a26"
+  integrity sha512-4HKDyk357aIFZnii+Zkkq82Q0Q4uRD4+7zS/u8edwxPea/eeS6W4NBorPyloUzaFI/Rxe0DLr4/aRFc0hHG0ug==
 
 zlibjs@^0.3.1:
   version "0.3.1"
