@@ -20,9 +20,9 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3
       with:
         node-version: ${{ matrix.node-version }}
 
@@ -33,7 +33,7 @@ jobs:
 
     # https://github.com/actions/cache/blob/main/examples.md#node---lerna
     - name: Cache node_modules
-      uses: actions/cache@v2
+      uses: actions/cache@8492260343ad570701412c2f464a5877dc76bace # v2
       env:
         cache-name: node-modules-cache
       with:
@@ -48,7 +48,7 @@ jobs:
           ${{ runner.os }}-
 
     - name: Cache text lint
-      uses: actions/cache@v2
+      uses: actions/cache@8492260343ad570701412c2f464a5877dc76bace # v2
       env:
         cache-name: text-lint-cache
       with:
