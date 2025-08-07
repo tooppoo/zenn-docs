@@ -33,7 +33,7 @@ jobs:
 
     # https://github.com/actions/cache/blob/main/examples.md#node---lerna
     - name: Cache node_modules
-      uses: actions/cache@v2
+      uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4
       env:
         cache-name: node-modules-cache
       with:
@@ -48,7 +48,7 @@ jobs:
           ${{ runner.os }}-
 
     - name: Cache text lint
-      uses: actions/cache@v2
+      uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4
       env:
         cache-name: text-lint-cache
       with:
