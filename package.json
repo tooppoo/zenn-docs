@@ -7,8 +7,9 @@
     "test": "textlint --cache ./[!node_modules]*/**.md",
     "preview": "zenn preview"
   },
+  "packageManager": "pnpm@10.24.0",
   "engines": {
-    "node": ">= 16.0.0"
+    "node": ">= 24.0.0"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,6 @@
   "devDependencies": {
     "dotenv": "16.6.1",
     "js-yaml": "4.1.0",
-    "npm": "8.19.4",
     "pino": "8.21.0",
     "prh-rules": "prh/rules",
     "textlint": "12.6.1",
