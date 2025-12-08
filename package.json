@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/tooppoo/zenn-docs#readme",
   "devDependencies": {
-    "dotenv": "16.6.1",
+    "dotenv": "17.2.3",
     "js-yaml": "4.1.1",
     "pino": "8.21.0",
     "prh-rules": "prh/rules",
