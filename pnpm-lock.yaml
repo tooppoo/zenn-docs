@@ -52,8 +52,8 @@ importers:
         specifier: 1.0.1
         version: 1.0.1
       textlint-rule-prh:
-        specifier: 5.3.0
-        version: 5.3.0
+        specifier: 6.1.0
+        version: 6.1.0
       zenn-cli:
         specifier: 0.2.10
         version: 0.2.10
@@ -1218,6 +1218,9 @@ packages:
 
   textlint-rule-prh@5.3.0:
     resolution: {integrity: sha512-gdod+lL1SWUDyXs1ICEwvQawaSshT3mvPGufBIjF2R5WFPdKQDMsiuzsjkLm+aF+9d97dA6pFsiyC8gSW7mSgg==}
+
+  textlint-rule-prh@6.1.0:
+    resolution: {integrity: sha512-KrchADHw1/LZ/tAQ2XwL/XdUhunKCvlNmwgp+6hdyzuWX7uojOkDdJWWV0KAN4XWsK6Te5w/SZcYwQ7X6i3B0A==}
 
   textlint-util-to-string@3.3.4:
     resolution: {integrity: sha512-XF4Qfw0ES+czKy03BwuvBUoXC8NAg920VuRxW0pd72fW76zMeMbPI/bRN5PHq3SbCdOm7U69/Pk+DX34xqIYqA==}
@@ -2718,6 +2721,12 @@ snapshots:
       prh: 5.4.4
       textlint-rule-helper: 2.5.0
       untildify: 3.0.3
+
+  textlint-rule-prh@6.1.0:
+    dependencies:
+      '@babel/parser': 7.28.5
+      prh: 5.4.4
+      textlint-rule-helper: 2.5.0
 
   textlint-util-to-string@3.3.4:
     dependencies:
