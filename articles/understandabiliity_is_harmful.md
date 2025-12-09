@@ -122,7 +122,8 @@ published: false
 これはMartin Fowlerによって提唱された。
 ```
 
-この説明も一見してもっともらしく、近しい説明すら見かけることがある。しかし出典を実際に辿っていくと、この定義は少なくとも**不必要に狭い**定義であると言って良い
+この説明も一見してもっともらしく、近しい説明すら見かけることがある。しかし出典を実際に辿っていくと、この定義は少なくとも**不必要に狭い**定義であると言って良い。
+
 #### 問題1. 「等価性」という概念が、二次情報で欠落する構造
 
 Martin Fowlerによる著作『エンタープライズアプリケーションアーキテクチャ』（以下PoEAA）の「バリューオブジェクト」を参照してみよう。
@@ -330,7 +331,160 @@ Fowler自身によっても、immutableにするのはあくまでオブジェ�
 
 透明性とは、知識を閉ざすための規範ではなく、知識が検証可能なまま自由に流通するための最低限の倫理である。
 
-## 「透明性の倫理」実践例：「単一責任原則」について
+## 「透明性の倫理」実践例：単一責任の原則（SRP）を辿る
+
+
+単一責任の原則（Single Responsibility Principle, SRP）はソフトウェア設計の基礎原則として語られるが、その“基礎”という言葉とは裏腹に、実際には一次資料を辿らなければ理解が容易に歪む概念でもある。  
+そして、巷で流通する説明の多くは、文脈と定義の両方を縮約してしまっている。典型的には「単一の責務だけを持つように設計せよ」といった説明だが、そのように要約しつつ、「責務」とは何かという問題は各自が解釈した内容が流布されていると言って良いだろう。
+
+ここでは**透明性の倫理がどのように機能するのか** を具体的に示すため、「SRPとは何か」の調査を題材とする。
+
+透明性の倫理に従うなら、まずは次の三つを行う必要がある。
+
+- どこまで調べたか（限界の開示）
+- 何が資料の内容で、何が自分の解釈か（範囲の開示）
+- 引用した権威と自分の主張を混ぜない（切断）
+
+以下では、この構造に沿って SRP を扱う。
+
+### 1. 調査範囲の開示（限界の明示）
+
+まず、今回の調査で参照した資料を以下に羅列しておく（実際には、参考資料として列挙しつつ、適宜脚注として参照するでも良いだろう）。
+
+- Robert C. Martin（2003） 『Agile Software Development, Principles, Patterns, and Practices』(Pearson Education)
+  - SRPの初出資料
+- Robert C. Martin（2014） 『The Single Responsibility Principle』 (The Clean Code Blog)
+  - Martin本人によるブログ記事
+- Robert C. Martin（2017） 『クリーンアーキテクチャ 達人に学ぶソフトウェアの構造と設計』(アスキードワンゴ)
+  - SRPの定義が「変更理由」から「アクター」へ再解釈されている
+- DeMarco & Page-Jones の「凝集度」概念  
+  - MartinがSRPの源流として挙げるが、該当箇所を確認できていない
+
+### 2. 一次資料に基づく「事実」の提示
+
+まず、資料に実際に書かれている内容を元に、「SRP」の内容を提示する。
+
+#### 『Agile Software Development（ASD）』におけるSRP
+
+ASDの記述に従えば、SRPのアイデアの源泉は、Tom DeMarcoとMeilir Page-Jonesの著作で説明されている「凝集度」(cohesion) の概念にある。[^11][^12]
+概念自体はデマルコとジョーンズを継承するものの、「Single Responsibility Principle」という命名は、Bertrand Meyerから拝借したようだが、これは本人も記憶が定かではないらしい。[^13]
+
+[^11]: 本稿執筆時点で、デマルコおよびジョーンズが「凝集度」についてどのような説明を行っていたかまでは確認できていない。ここではMartinの記述をそのまま受け取っている。
+[^12]: Martin（2003） p.95
+[^13]: Martin（2014）<br>> In the late 1990s I tried to consolidate these notions into a principle, which I called: The Single Responsibility Principle. (I have this vague feeling that I stole the name of this principle from Bertrand Meyer, but I have not been able to confirm that.)
+
+ASDにおいて “responsibility” はこう定義される。
+
+> In the context of the SRP, we define a responsibility to be ‘a reason for change’.[^14]
+
+つまり、SRPにおける「責任」は「変更理由」という言葉によって定義される。
+
+さらに Martin は次のように述べる。
+
+> An axis of change is an axis of change only if the changes actually occure. It is not wise to apply the SRP, or any other principle for that matter, if there is no symptom.[^14]
+
+ASDにおいて、SRPの「変更の理由」は実際に変更が発生してはじめて「変更の軸」となるのであって、その症状が発生していない内から適用するのは賢明でない（not wise）としている。
+
+[^14]: Martin(2003) p.97
+
+また、永続化とビジネスルールの分離については次の記述がある。
+
+> The Employee class contains business rules and persistence control. These two responsibilities should almost never be mixd. Business rules tend to change frequently, and though persistence may not change as frequently, it changes for completely different reasons.[^15]
+
+[^15]: Martin(2003) p.98
+
+ビジネスルールは頻繁に変更される傾向にあるが、永続化はそれほど頻繁に変更されなくとも、全く異なる理由で変更される。故に、この2つはほぼ混ぜるべきではないとしている。
+
+#### 『Clean Architecture（CA）』（2017）における再定義
+
+CAでは、SRPが次のように定義を変更されている。[^16]
+
+> モジュールは、たったひとつのアクターに対して責務を負うべきである。
+
+[^16]: Martin（2017）7章
+
+ここで言う「アクター」とは、変更を望むユーザーやステークホルダーの集合のことだ。
+ASDでは「変更理由」という抽象的な軸だったものが、CAでは「組織上のアクター」という具体的な軸へと再構築されている。
+
+### 3. SRPとその変遷について（解釈）
+
+ここからは、上記の事実を踏まえたうえで、ASD・CAそれぞれのSRPに対する解釈を述べる。
+
+#### ASDのSRPは「技術的依存の爆発回避」が中心にある
+
+ASDの説明は、複数の変更理由を抱えたモジュールが
+
+- 再ビルド
+- 再テスト
+- 再デプロイ
+
+などのコストを同時に引き起こすことを避ける、という意図が基盤にある。[^17]これは「凝集度」に近い古典的設計思想である。
+
+[^17]: Martin（2003）p.96<br>>Second, if a change to the GraphicalAplication causes the Rectangle to change for some reason, that change may force us to rebuild, retest, and redeploy the ComputationalGeometryApplication. If we forget to do this, that application may break in unpredictable ways.
+
+#### Clean Architecture の「アクター」概念は具体化による取りこぼしを起こす
+
+CAのSRPは「アクター単位で責務を持たせる」という具体的な枠組みになっている。本書の例を用いると、「雇用者の情報を保存する処理はDB管理者が規定するから、関連するアクターはCTOである」「雇用者の給料を計算する処理は経理部門が規定するから、関連するアクターはCFOである」といった具合である[^18]。
+
+[^18]: Martin（2017）7章
+
+しかし、更新内容が「雇用者の給与テーブル変更反映」である場合はどうなるのだろうか。
+
+- DBの更新は技術的責務 → CTO がアクター
+- 給与情報は経理的責務 → CFOがアクター
+
+技術的変更と業務的変更が絡むケースでは、アクター単位の切り分けは曖昧になる。
+
+つまり、ASDの「変更理由」という抽象度の高さが持っていた柔軟性が、CAの具体化によって部分的に失われていると評価できるのではないか。
+
+#### SRP は「名称は同じでも指す概念が揺らいでいる」
+
+ASDとCAは、その定義の変更によって、単なる言い換えにとどまらずその概概自体が揺らいでいる。
+
+- ASD：技術的依存の制御（変更理由）
+- CA：組織構造に基づく責務整理（アクター）
+
+この差異を無視して「SRPとは◯◯である」と一般化すると、SRPの説明は混乱を生じる。ASDに依拠した人とCAに依拠した人とで、会話が噛み合わないおそれがある。
+
+### 4. SRPに対する評価
+
+ここからは、事実や解釈とは独立した筆者の評価である。
+
+SRPは「単一責任の原則」という平易な言葉で構成されているが、その内実は、ASDとCAのいずれを参照するにせよ、その名称からはやや乖離がある。
+「責任」という言葉を一般的な語彙として捉えてはならない。その曖昧さによって混乱が生じてしまうからだ。
+ASD基準ならば「変更の理由」と、CA基準ならば「アクター」と、依拠するものに応じて適切な言葉を通じて理解する必要がある、やや複雑な背景を持つ言葉である。
+
+「責任」という言葉を「変更の理由」と捉えるか、「アクター」と捉えるか、いずれにしても共通して重要なのは「変更の頻度やトリガーが異なるものを、一箇所に置かない」ということであり、これは現代のソフトウェア開発でも一般に念頭に置いて良い概念といえるだろう。
+
+ただし、「変更の理由」と「アクター」どちらを念頭に置くかで基準や分離の力点が変わってくる可能性がある。SRPを適用してモジュールを分割する際は、自身がどちらの観点を用いているのか意識する、あるいは意図的に切り替えて観察してみることで、よりよい分割のラインを見つける手がかりになるかもしれない。
+
+その意味で、この変遷は混乱の元ではあるが、同時にソフトウェア設計の引き出しを増やす効果があるとも言えるかもしれない。
+
+---
+
+- 何をどこまで調べたか
+- どの文献のどの記述を根拠にしているか
+- どこから先が筆者の解釈か
+
+これらを開示しなければ、SRP のような歴史的に変動してきた概念は瞬時に縮約され、
+単純化された“わかったつもり”だけが流通する。
+
+透明性の倫理は、この縮約を防ぐ唯一の方法である。
+
+### まとめ：「透明性の倫理」実践例
+
+SRP は、技術書やブログで最も頻繁に参照される原則の一つだ。
+しかし、原則が広く流通すればするほど、定義の揺れや縮約が累積しやすい。
+
+- 「責任」が曖昧語に戻される
+- 「変更理由」という当初の定義が忘れられる
+- 「変更理由」から「アクター」という概念の変遷が無視され、技術的文脈と組織的文脈が混ざる
+
+こうした混乱は、一次資料を参照しないまま説明を続ける文化のなかで自然発生する。
+
+透明性の倫理は、書き手を縛るための規範ではない。むしろ、曖昧さや限界を隠さないことで、概念そのものの健全性を守るための防波堤である。
+
+SRPを題材にすると、その構造がよく見える。SRPに限らず、知識は本来こうした透明性の上に初めて理解可能になる。
 
 ## 結び：透明性は、書き手と読み手の自由を守る
 
@@ -358,11 +512,15 @@ Fowler自身によっても、immutableにするのはあくまでオブジェ�
   - <https://docs.ruby-lang.org/ja/latest/class/Class.html>
 - MDN
   - <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes>
-- Eric Evans(2011)『エリック・エヴァンスのドメイン駆動設計』翔泳社 今関剛 監訳, 和智右桂・牧野祐子 訳
-- Martin Fowler(2005)『エンタープライズアプリケーションアーキテクチャ』翔泳社　長瀬嘉秀 監訳, 株式会社テクノロジックアート 訳
+- Eric Evans（2011）『エリック・エヴァンスのドメイン駆動設計』（翔泳社）今関剛 監訳, 和智右桂・牧野祐子 訳
+- Martin Fowler（2005）『エンタープライズアプリケーションアーキテクチャ』翔泳社　長瀬嘉秀 監訳, 株式会社テクノロジックアート 訳
 - Value Object - martinFowler.com
   - <https://martinfowler.com/bliki/ValueObject.html>
 - Value Objectについて整理しよう
   - <https://kumagi.hatenablog.com/entry/value-object>
 - 値オブジェクトへの誤解が生まれる一つのストーリー - 文脈と定義を大事にする
   - <https://zenn.dev/339/articles/554d9f1e8cc645>
+- Robert C. Martin（2003）『Agile Software Development, Principles, Patterns, and Practices』(Pearson Education)
+- Robert C. Martin（2014）『The Single Responsibility Principle』 (The Clean Code Blog)
+  - <https://blog.cleancoder.com/uncle-bob/2014/05/08/SingleReponsibilityPrinciple.html>
+- Robert C. Martin（2017）『クリーンアーキテクチャ 達人に学ぶソフトウェアの構造と設計』(アスキードワンゴ)
