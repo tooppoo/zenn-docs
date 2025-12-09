@@ -380,7 +380,7 @@ ASDにおいて “responsibility” はこう定義される。
 
 さらに Martin は次のように述べる。
 
-> An axis of change is an axis of change only if the changes actually occure. It is not wise to apply the SRP, or any other principle for that matter, if there is no symptom.[^14]
+> An axis of change is an axis of change only if the changes actually occur. It is not wise to apply the SRP, or any other principle for that matter, if there is no symptom.[^14]
 
 ASDにおいて、SRPの「変更の理由」は実際に変更が発生してはじめて「変更の軸」となるのであって、その症状が発生していない内から適用するのは賢明でない（not wise）としている。
 
@@ -388,7 +388,7 @@ ASDにおいて、SRPの「変更の理由」は実際に変更が発生して�
 
 また、永続化とビジネスルールの分離については次の記述がある。
 
-> The Employee class contains business rules and persistence control. These two responsibilities should almost never be mixd. Business rules tend to change frequently, and though persistence may not change as frequently, it changes for completely different reasons.[^15]
+> The Employee class contains business rules and persistence control. These two responsibilities should almost never be mixed. Business rules tend to change frequently, and though persistence may not change as frequently, it changes for completely different reasons.[^15]
 
 [^15]: Martin(2003) p.98
 
