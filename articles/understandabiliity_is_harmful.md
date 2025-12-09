@@ -67,6 +67,10 @@ published: false
 一見わかりやすい比喩ほど、本質を切除し、理解を固定化し、思考の幅を狭める危険がある。比喩は「説明したい観点に着目して語る」という性質上、どうしてもこうした情報の切り捨てが発生するからだ。
 しかし「わかりやすい」ことを上位の価値と位置づけてしまうと、こうした危険を無視ないし矮小化することを正当化する口実となってしまう。
 
+比喩それ自体を全面否定したいわけではない。入門フェーズでの荒い足場としては有用な場面もある。
+ただし本来は、その後に「ここから先は比喩を捨てよう」「この比喩では表現しきれない部分がある」という更新フェーズが必要だ。
+その更新を怠ったまま比喩だけを量産すると、そこで理解が固定化される。
+
 ### 観点2. 説得力は、内容の正しさとは無関係に操作できる
 
 説得力を指標にすると、『どれだけ正しいか』より『どれだけ筋が通っている**ように見えるか**』が前に評価される。
@@ -206,7 +210,9 @@ Fowler自身によっても、immutableにするのはあくまでオブジェ�
 **結果として、「理解した気分」だけが加速し、「実際の理解」は置き去りになる。**
 
 わかりやすさと説得力は、必ずしも良い結果を招かない。むしろ、「わかりやすさ」「説得力」が不透明性を伴うとき、それは誤解を固定化し検証の回路を断つという事態をもたらす。
-その事態を意図的に起こすなら、それは『読む側に誤解が生じても構わない／検証できなくても構わない』という前提を飲ませることであり、その意味で倫理的な問題でもある。
+その事態を意図的に起こすなら、それは『読む側に誤解が生じても構わない／検証できなくても構わない』という前提を飲ませることであり、その意味で倫理的な問題でもある。[^10]
+
+[^10]: ここで「倫理的な問題」と呼んでいるのは、こうした不透明性を意図的に利用している場合である。能力不足や時間的制約による不備まで、ただちに道徳的非難の対象にしたいわけではない。
 
 ここまで見てきた問題はいずれも、「不透明性」という一点に収束する。次節では、その対案としての「**透明性の倫理**」について述べる。
 
@@ -238,7 +244,7 @@ Fowler自身によっても、immutableにするのはあくまでオブジェ�
 - 仮説や未検証の記述が、確立した知識のように扱われる  
 - 曖昧さを隠した書き手が、後から自分の文章を訂正しづらくなる  
 
-技術記事の誤解が累積していく場面の多くで、その起点にこの“隠された不確実性”がある。
+技術記事の誤解が累積していく場面で、この“隠された不確実性”がしばしば見つかる。
 
 #### 限界を開示することによって生まれる利点
 
@@ -272,13 +278,13 @@ Fowler自身によっても、immutableにするのはあくまでオブジェ�
 2. **解釈**：筆者がその記述をどう読んだか  
 3. **主張**：解釈をふまえて筆者が立てる立場  
 
-これらが混ざると、読者は「筆者の解釈」を「資料がそう述べている」と誤解しやすくなる[^10]。
+これらが混ざると、読者は「筆者の解釈」を「資料がそう述べている」と誤解しやすくなる[^11]。
 結果として、資料の権威が筆者の主張を裏付けるかのように見える構造が生まれる。
 
 この瞬間、読者の検証能力は奪われる。  
 何を読めばよいか、どこが事実でどこが意見か、その境界が見えなくなるからだ。
 
-[^10]: 深刻なケースだと、「Xを読んで、◯◯であるとわかった」と書いているが、実際にXを読むと◯◯と書かれている箇所は全く存在しない、という実例もある。個人攻撃や晒し上げが目的ではないので、詳細は伏せる。
+[^11]: 深刻なケースだと、「Xを読んで、◯◯であるとわかった」と書いているが、実際にXを読むと◯◯と書かれている箇所は全く存在しない、という実例もある。個人攻撃や晒し上げが目的ではないので、詳細は伏せる。
 
 #### 実践方法：構造で区別する
 
@@ -328,17 +334,17 @@ Fowler自身によっても、immutableにするのはあくまでオブジェ�
 
 権威と主張を切り離すことで、読者にとっての検証可能性が維持される。
 
----
-
 ### 透明性の倫理がもたらす自由
 
-透明性の倫理は、書き手に新たな負荷を課すものではない。  
-むしろ、書き手を「完全に理解している」という圧力から解放する枠組みである。
+透明性の倫理は、脚注や引用の手間をゼロにしてくれる魔法ではない。むしろ、ある程度の追加コストは確実に発生する。
+しかしその代わりに、「わかったふりをし続ける」という、より重い負荷から書き手を解放する枠組みである。
 
-同時に、読者にとっても自由である。  
-どこを信じ、どこを疑い、どこを自分の手で確かめる必要があるかを判断できる。
+同時に、読者に対しても自由を与えるものである。どこを信じ、どこを疑い、どこを自分の手で確かめる必要があるか、情報が提供されているからこそそれらを判断できる。
 
 透明性とは、知識を閉ざすための規範ではなく、知識が検証可能なまま自由に流通するための最低限の倫理である。
+
+もちろん、あらゆる記事で一次資料を精査し、すべての引用にページ番号を振るのは現実的ではない場面も多い。商業書であればページ都合、WEBメディアであれば文字数上限といった制約もあるだろう。
+その場合でも、少なくとも「自分が依拠している資料名」と「これは自分の解釈である」という線だけでも引くことはできる。透明性の倫理は、この最低ラインから始められる。
 
 ## 「透明性の倫理」実践例：単一責任の原則（SRP）を辿る
 
@@ -374,42 +380,42 @@ Fowler自身によっても、immutableにするのはあくまでオブジェ�
 
 #### 『Agile Software Development（ASD）』におけるSRP
 
-ASDの記述に従えば、SRPのアイデアの源泉は、Tom DeMarcoとMeilir Page-Jonesの著作で説明されている「凝集度」(cohesion) の概念にある。[^11][^12]
-概念自体は、Martinの説明するところでは DeMarco と Page-Jones の「凝集度」の議論を継承したものらしい。一方で、「Single Responsibility Principle」という命名は、Bertrand Meyerから拝借したようだが、これは本人も記憶が定かではないらしい。[^13]
+ASDの記述に従えば、SRPのアイデアの源泉は、Tom DeMarcoとMeilir Page-Jonesの著作で説明されている「凝集度」(cohesion) の概念にある。[^12][^13]
+概念自体は、Martinの説明するところでは DeMarco と Page-Jones の「凝集度」の議論を継承したものらしい。一方で、「Single Responsibility Principle」という命名は、Bertrand Meyerから拝借したようだが、これは本人も記憶が定かではないらしい。[^14]
 
-[^11]: 本稿執筆時点で、デマルコおよびジョーンズが「凝集度」についてどのような説明を行っていたかまでは確認できていない。ここではMartinの記述をそのまま受け取っている。
-[^12]: Martin（2003） p.95
-[^13]: Martin（2014）<br>> In the late 1990s I tried to consolidate these notions into a principle, which I called: The Single Responsibility Principle. (I have this vague feeling that I stole the name of this principle from Bertrand Meyer, but I have not been able to confirm that.)
+[^12]: 本稿執筆時点で、デマルコおよびジョーンズが「凝集度」についてどのような説明を行っていたかまでは確認できていない。ここではMartinの記述をそのまま受け取っている。
+[^13]: Martin（2003） p.95
+[^14]: Martin（2014）<br>> In the late 1990s I tried to consolidate these notions into a principle, which I called: The Single Responsibility Principle. (I have this vague feeling that I stole the name of this principle from Bertrand Meyer, but I have not been able to confirm that.)
 
 ASDにおいて “responsibility” はこう定義される。
 
-> In the context of the SRP, we define a responsibility to be ‘a reason for change’.[^14]
+> In the context of the SRP, we define a responsibility to be ‘a reason for change’.[^15]
 
 つまり、SRPにおける「責任」は「変更理由」という言葉によって定義される。
 
 さらに Martin は次のように述べる。
 
-> An axis of change is an axis of change only if the changes actually occur. It is not wise to apply the SRP, or any other principle for that matter, if there is no symptom.[^14]
+> An axis of change is an axis of change only if the changes actually occur. It is not wise to apply the SRP, or any other principle for that matter, if there is no symptom.[^15]
 
 ASDにおいて、SRPの「変更の理由」は実際に変更が発生してはじめて「変更の軸」となるのであって、その症状が発生していない内から適用するのは賢明でない（not wise）としている。
 
-[^14]: Martin(2003) p.97
+[^15]: Martin(2003) p.97
 
 また、永続化とビジネスルールの分離については次の記述がある。
 
-> The Employee class contains business rules and persistence control. These two responsibilities should almost never be mixed. Business rules tend to change frequently, and though persistence may not change as frequently, it changes for completely different reasons.[^15]
+> The Employee class contains business rules and persistence control. These two responsibilities should almost never be mixed. Business rules tend to change frequently, and though persistence may not change as frequently, it changes for completely different reasons.[^16]
 
-[^15]: Martin(2003) p.98
+[^16]: Martin(2003) p.98
 
 ビジネスルールは頻繁に変更される傾向にあるが、永続化はそれほど頻繁に変更されなくとも、全く異なる理由で変更される。故に、この2つはほぼ混ぜるべきではないとしている。
 
 #### 『Clean Architecture（CA）』（2017）における再定義
 
-CAでは、SRPが次のように定義を変更されている。[^16]
+CAでは、SRPが次のように定義を変更されている。[^17]
 
 > モジュールは、たったひとつのアクターに対して責務を負うべきである。
 
-[^16]: Martin（2017）7章
+[^17]: Martin（2017）7章
 
 ここで言う「アクター」とは、変更を望むユーザーやステークホルダーの集合のことだ。
 ASDでは「変更理由」という抽象的な軸だったものが、CAでは「組織上のアクター」という具体的な軸へと再構築されている。
@@ -426,15 +432,15 @@ ASDの説明は、複数の変更理由を抱えたモジュールが
 - 再テスト
 - 再デプロイ
 
-などのコストを同時に引き起こすことを避ける、という意図が基盤にある。[^17]これは「凝集度」に近い古典的設計思想である。
+などのコストを同時に引き起こすことを避ける、という意図が基盤にある。[^18]これは「凝集度」に近い古典的設計思想である。
 
-[^17]: Martin（2003）p.96<br>>Second, if a change to the GraphicalAplication causes the Rectangle to change for some reason, that change may force us to rebuild, retest, and redeploy the ComputationalGeometryApplication. If we forget to do this, that application may break in unpredictable ways.
+[^18]: Martin（2003）p.96<br>>Second, if a change to the GraphicalAplication causes the Rectangle to change for some reason, that change may force us to rebuild, retest, and redeploy the ComputationalGeometryApplication. If we forget to do this, that application may break in unpredictable ways.
 
 #### Clean Architecture の「アクター」概念は具体化による取りこぼしを起こす
 
-CAのSRPは「アクター単位で責務を持たせる」という具体的な枠組みになっている。本書の例を用いると、「雇用者の情報を保存する処理はDB管理者が規定するから、関連するアクターはCTOである」「雇用者の給料を計算する処理は経理部門が規定するから、関連するアクターはCFOである」といった具合である[^18]。
+CAのSRPは「アクター単位で責務を持たせる」という具体的な枠組みになっている。本書の例を用いると、「雇用者の情報を保存する処理はDB管理者が規定するから、関連するアクターはCTOである」「雇用者の給料を計算する処理は経理部門が規定するから、関連するアクターはCFOである」といった具合である[^19]。
 
-[^18]: Martin（2017）7章
+[^19]: Martin（2017）7章
 
 しかし、更新内容が「雇用者の給与テーブル変更反映」である場合はどうなるのだろうか。
 
@@ -507,6 +513,11 @@ SRPを題材にすると、その構造がよく見える。SRPに限らず、�
 限界があるなら、そう書いてよい。そう書くことで、読者はどこを信じ、どこを疑い、どこを自分で調べるべきか判断できる。
 わかりやすさと説得力、いずれもそれ自体が悪ではない。しかし、透明性を欠いた説明は、たとえ滑らかであっても理解の役に立たない。
 
+わかりやすさや説得力そのものを捨てる必要はない。
+ただし、それらは「透明性の上に積み増すもの」として扱うべきだろう。
+まずどの範囲で何を根拠にしているかを開示し、そのうえで必要であれば比喩やレトリックで読みやすさを調整する。
+順序を逆転させ、「わかりやすさ」「説得力」の名のもとに不透明性を飲み込ませた瞬間に、この記事で述べてきた問題が立ち上がる。
+
 **境界線と限界が明示された場所にこそ、理解の可能性が生まれる。**
 
 この倫理は、個々の書き手だけの問題ではなく、そうした説明を評価し、模倣し、引用する側の文化の問題でもある。
@@ -523,6 +534,7 @@ SRPを題材にすると、その構造がよく見える。SRPに限らず、�
   - <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes>
 - Eric Evans（2011）『エリック・エヴァンスのドメイン駆動設計』（翔泳社）今関剛 監訳, 和智右桂・牧野祐子 訳
 - Martin Fowler（2005）『エンタープライズアプリケーションアーキテクチャ』翔泳社　長瀬嘉秀 監訳, 株式会社テクノロジックアート 訳
+- Miran Lipova(2012)『すごいHaskell たのしく学ぼう！』 （オーム社）田中英行・村主祟行 訳
 - Value Object - martinFowler.com
   - <https://martinfowler.com/bliki/ValueObject.html>
 - Value Objectについて整理しよう
