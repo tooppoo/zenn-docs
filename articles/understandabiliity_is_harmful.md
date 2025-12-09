@@ -529,6 +529,11 @@ SRPを題材にすると、その構造がよく見える。SRPに限らず、�
 
 わかりやすさや説得力そのものを捨てる必要はない。
 ただし、それらは「透明性の上に積み増すもの」として扱うべきだろう。
+
+この記事自体も、挑発的なタイトルや強めの言葉を使うことで、ある種の「説得力」を狙っている。
+そのうえで、どの範囲で何を根拠にしているかをできるかぎり開示しようとしている。
+ここで言いたいのは、「わかりやすさや説得力を捨てよ」ではなく、「わかりやすさや説得力より先に、透明性のラインを引け」という順序の話である。
+
 まずどの範囲で何を根拠にしているかを開示し、そのうえで必要であれば比喩やレトリックで読みやすさを調整する。
 順序を逆転させ、「わかりやすさ」「説得力」の名のもとに不透明性を飲み込ませた瞬間に、この記事で述べてきた問題が立ち上がる。
 
@@ -553,8 +558,6 @@ SRPを題材にすると、その構造がよく見える。SRPに限らず、�
   - <https://martinfowler.com/bliki/ValueObject.html>
 - Value Objectについて整理しよう
   - <https://kumagi.hatenablog.com/entry/value-object>
-- 値オブジェクトへの誤解が生まれる一つのストーリー - 文脈と定義を大事にする
-  - <https://zenn.dev/339/articles/554d9f1e8cc645>
 - Robert C. Martin（2003）『Agile Software Development, Principles, Patterns, and Practices』(Pearson Education)
 - Robert C. Martin（2014）『The Single Responsibility Principle』 (The Clean Code Blog)
   - <https://blog.cleancoder.com/uncle-bob/2014/05/08/SingleReponsibilityPrinciple.html>
