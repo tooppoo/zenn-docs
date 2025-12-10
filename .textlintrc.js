@@ -8,6 +8,7 @@ module.exports = {
         "/\\[\\^[0-9]+\\]:.+p\\.[0-9]+/", // 脚注
       ],
     },
+    comments: true,
   },
   rules: {
     "footnote-order": true,
