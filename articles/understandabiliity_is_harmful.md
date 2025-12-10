@@ -89,12 +89,15 @@ published: false
 
 #### 問題1：前提が誤っている  
 
-関数型言語の多くは「副作用を禁止」していない。  
-副作用を **分離** したり、**制御** したり、**明示** する仕組みを持ってはいるが、これらはいずれも「禁止」とは異なる。
+関数型言語は「副作用を禁止」しているというのは、正確ではない。
+副作用を **分離** したり、**明示** する仕組みを持っていることは多いが、これらはいずれも「禁止」とは異なる。
 
-例えばHaskellでは入出力という副作用を`IO`モナドとして分離可能にしているが、入出力という副作用の利用を「禁止」しているわけではない[^5]。
+例えばHaskellでは入出力という副作用を`IO`モナドを用いて分離し、副作用の実行はコンパイル後の実行に分離している。入出力という副作用の利用が「禁止」されているわけではない[^5][^6]。
+オブジェクト指向と関数型のハイブリッドであるScalaなどは、 `plintln` など標準入出力（という副作用）を伴う関数も、特に制限なく使える[^7]。
 
 [^5]: Miran Lipovača(2012) p.160<br>> *Haskell は、副作用を持つ関数を扱うための素晴らしく賢いシステムを持っているのです。そのシステムが、プログラムの純粋（pure）な部分と、キーボードや画面とやり取りするようなすべての汚い仕事をする不純（impure）な部分とをきっちりと分離してくれます。この2つの部分が隔てられているので、外の世界とやり取りしつつも、依然としてプログラムの純粋な部分を推論したり、純粋だからこそ得られる遅延評価、堅牢性、関数合成などを利用したりできます。*
+[^6]: IO モナドと副作用 - haskell-jp 2025-12-10 19:52閲覧<br>> Haskellは純粋な部分だけは目に見える範囲で提供し、非純粋な部分は隠蔽し、純粋に扱うことだけをできるようにしている。(...)こうすることで、Haskellは純粋性を保ちながら、非純粋な動作を扱えるようになっている。
+[^7]: TOUR OF SCALA 2025-12-10 19:54閲覧 <https://docs.scala-lang.org/ja/tour/basics.html>
 
 文章の“強さ”が内容の“正しさ”を保証しない典型例と言える。
 
@@ -142,9 +145,9 @@ Martin Fowlerによる著作『エンタープライズアプリケーション�
 
 > ID に基づいた等価性を確保していない、Money やDate Range などのシンプルな小型オブジェクト。
 > (中略)
-> 参照オブジェクトとバリューオブジェクトの主な相違点は、等価性の処理の方法である。(中略)バリューオブジェクトの等価性の概念はクラス内のフィールド値に基づいている。2つのDateオブジェクトで日、月、年の値が同じ場合は、等価ということになる。[^6]
+> 参照オブジェクトとバリューオブジェクトの主な相違点は、等価性の処理の方法である。(中略)バリューオブジェクトの等価性の概念はクラス内のフィールド値に基づいている。2つのDateオブジェクトで日、月、年の値が同じ場合は、等価ということになる。[^7]
 
-[^6]: Martin Fowler(2005) p.508-509
+[^7]: Martin Fowler(2005) p.508-509
 
 先に提示した説明例では「等価性」という性質への言及は含まれていない。結果「出典を遡らない限り、"等価性"という中心概念にはたどり着けない」という事態に陥っている。
 
@@ -156,9 +159,9 @@ Martin Fowlerによる著作『エンタープライズアプリケーション�
 > (中略)
 > 値オブジェクトは、他のオブジェクトが組み合わされてできていることもある。
 > (中略)
-> 値オブジェクトはエンティティを参照することもできる。[^7]
+> 値オブジェクトはエンティティを参照することもできる。[^8]
 
-[^7]: Eric Evans(2011) p.96
+[^8]: Eric Evans(2011) p.96
 
 エヴァンス本によれば、値オブジェクトはそれ自体複数のオブジェクトで構成されることもありうるのだから、「プリミティブ型をクラスで包む」という記述は不必要に定義を狭めている。
 ここでは「出典を遡らない限り、本来不要な制約に縛られてしまう」という事態が生じている。
@@ -169,13 +172,13 @@ Martin Fowlerのブログ"martinFowler.com"にも、Value Objectについての�
 
 > To avoid aliasing bugs I follow a simple but important rule: **value objects should be immutable**. If I want to change my party date, I create a new object instead.
 > (中略)
-> While immutability is my favorite technique to avoid aliasing bugs, it's also possible to avoid them by ensuring assignments always make a copy. Some languages provide this ability, such as structs in C#.[^8]
+> While immutability is my favorite technique to avoid aliasing bugs, it's also possible to avoid them by ensuring assignments always make a copy. Some languages provide this ability, such as structs in C#.[^9]
 
-[^8]: Value Object - martinFowler.com 2025-12-09 12:55 閲覧
+[^9]: Value Object - martinFowler.com 2025-12-09 12:55 閲覧
 
-Fowler自身によっても、immutableにするのはあくまでオブジェクトを共有する際の不具合を回避するための一つの手法であり[^9]、immutableにする以外の方法として、「常にコピーを生成する(it's also possible to avoid them by ensuring assignments always make a copy)」もはっきりと認められている。
+Fowler自身によっても、immutableにするのはあくまでオブジェクトを共有する際の不具合を回避するための一つの手法であり[^10]、immutableにする以外の方法として、「常にコピーを生成する(it's also possible to avoid them by ensuring assignments always make a copy)」もはっきりと認められている。
 
-[^9]: Value Objectについて整理しよう 2025-12-09 20:30 閲覧<br>> *一番重要なのは「値(Value)」という概念そのもの。それが複数の値の合成物からなる値ならばオブジェクトを定義してプロパティで等価比較する実装手段がいい、これをValue Objectと呼ぶ。だがオブジェクトを取り回す際には言語によっては無意識の共有操作に手を噛まれないようにせよ、回避策としてimmutableにするのもアリだよ。この順が重要である。*
+[^10]: Value Objectについて整理しよう 2025-12-09 20:30 閲覧<br>> *一番重要なのは「値(Value)」という概念そのもの。それが複数の値の合成物からなる値ならばオブジェクトを定義してプロパティで等価比較する実装手段がいい、これをValue Objectと呼ぶ。だがオブジェクトを取り回す際には言語によっては無意識の共有操作に手を噛まれないようにせよ、回避策としてimmutableにするのもアリだよ。この順が重要である。*
 
 ここでは、原典では「should」だった要素が二次情報では「must」に変化しているという、やはり出典を遡って初めて発見できる問題が隠れている。
 
@@ -216,7 +219,13 @@ Fowler自身によっても、immutableにするのはあくまでオブジェ�
 ここで問題にしたいのは、こうした不透明性を意図的に利用している場合である。能力不足や時間的制約による不備まで、ただちに道徳的非難の対象にしたいわけではない。どこまでを「仕方ない不備」とみなし、どこからを「不透明性の利用」と見なすか、その境界線はなお検討の余地がある。
 ただしその事態を**意図的に起こすなら**、それは『読む側に誤解が生じても構わない／検証できなくても構わない』という前提を飲ませることであり、その意味で倫理的な問題にもなってくる。
 
-ここまで見てきた問題はいずれも、「不透明性」という概念に収束する。「不透明性」は、より具体的には次の三つに分解できる。
+ただ、他人のテキストについて「それを意図してやっているかどうか」を外側から判定することはほぼ不可能だ。
+実務上問題になるのは、意図の有無ではなく、結果として「限界・範囲・出典が一体化して不透明になっている状態」そのものである。
+本稿で「倫理」と呼んでいるのは、最終的にはこの状態を避けるための、外形的にチェック可能なルールの集合である。
+
+---
+
+さて、ここまで見てきた問題はいずれも、「不透明性」という概念に収束する。「不透明性」は、より具体的には次の三つに分解できる。
 
 - どこまで調べたか・どこからが推測かが伏せられている（限界の不透明性）
 - 資料の記述と、自分の解釈・主張の境界が曖昧である（範囲の不透明性）
@@ -243,8 +252,6 @@ Fowler自身によっても、immutableにするのはあくまでオブジェ�
 - 出典の不透明性に対して：出典を示しつつ、権威と自分の主張を混ぜない「権威と主張の切断」
 
 以下では、この倫理を構成する三つの要素を順に確認していく。
-
----
 
 ### 1. 限界の開示 —— 不確実性を隠した瞬間、文章は正しさを装い始める
 
@@ -292,13 +299,13 @@ Fowler自身によっても、immutableにするのはあくまでオブジェ�
 2. **解釈**：筆者がその記述をどう読んだか  
 3. **主張**：解釈をふまえて筆者が立てる立場  
 
-これらが混ざると、読者は「筆者の解釈」を「資料がそう述べている」と誤解しやすくなる[^11]。
+これらが混ざると、読者は「筆者の解釈」を「資料がそう述べている」と誤解しやすくなる[^12]。
 結果として、資料の権威が筆者の主張を裏付けるかのように見える構造が生まれる。
 
 この瞬間、読者の検証能力は奪われる。  
 何を読めばよいか、どこが事実でどこが意見か、その境界が見えなくなるからだ。
 
-[^11]: 深刻なケースだと、「Xを読んで、◯◯であるとわかった」と書いているが、実際にXを読むと◯◯と書かれている箇所は全く存在しない、という実例もある。個人攻撃や晒し上げが目的ではないので、詳細は伏せる。
+[^12]: 深刻なケースだと、「Xを読んで、◯◯であるとわかった」と書いているが、実際にXを読むと◯◯と書かれている箇所は全く存在しない、という実例もある。個人攻撃や晒し上げが目的ではないので、詳細は伏せる。
 
 #### 実践方法：構造で区別する
 
@@ -360,7 +367,7 @@ Fowler自身によっても、immutableにするのはあくまでオブジェ�
 もちろん、あらゆる記事で一次資料を精査し、すべての引用にページ番号を振るのは現実的ではない場面も多い。商業書であればページ都合、WEBメディアであれば文字数上限といった制約もあるだろう。
 その場合でも、「これは自分の解釈である」と線を引くことと、「依拠している資料名を書くこと」の二つは、ほとんどの文脈でコストに対して得られるものが大きすぎる。ここは妥協せず、最低ラインとしてしまってよいと考えている。
 
-SRPの節は、ここで言う「透明性」をできるかぎり前景化する書き方を試した例だ。実務上は、必ずしもここまでやらなくてもよいだろう。
+次に続く節は、ここで言う「透明性」をできるかぎり前景化する書き方を試した例だ。実務上は、必ずしもここまでやらなくてもよいだろう。
 ただ、最低限どの資料に依拠しているかと、自分の解釈との境界線だけは引けるはずだ、というのがここで主張したいラインである。
 同時に、「やろうと思えば、少なくともここまで透明にできる」というラインを示すものでもある。
 
@@ -398,42 +405,42 @@ SRPの節は、ここで言う「透明性」をできるかぎり前景化す�
 
 #### 『Agile Software Development（ASD）』におけるSRP
 
-ASDの記述に従えば、SRPのアイデアの源泉は、Tom DeMarcoとMeilir Page-Jonesの著作で説明されている「凝集度」(cohesion) の概念にある。[^12][^13]
-概念自体は、Martinの説明するところでは DeMarco と Page-Jones の「凝集度」の議論を継承したものらしい。一方で、「Single Responsibility Principle」という命名は、Bertrand Meyerから拝借したようだが、これは本人も記憶が定かではないらしい。[^14]
+ASDの記述に従えば、SRPのアイデアの源泉は、Tom DeMarcoとMeilir Page-Jonesの著作で説明されている「凝集度」(cohesion) の概念にある。[^13][^14]
+概念自体は、Martinの説明するところでは DeMarco と Page-Jones の「凝集度」の議論を継承したものらしい。一方で、「Single Responsibility Principle」という命名は、Bertrand Meyerから拝借したようだが、これは本人も記憶が定かではないらしい。[^15]
 
-[^12]: 本稿執筆時点で、デマルコおよびジョーンズが「凝集度」についてどのような説明を行っていたかまでは確認できていない。ここではMartinの記述をそのまま受け取っている。
-[^13]: Martin（2003） p.95
-[^14]: Martin（2014）<br>> In the late 1990s I tried to consolidate these notions into a principle, which I called: The Single Responsibility Principle. (I have this vague feeling that I stole the name of this principle from Bertrand Meyer, but I have not been able to confirm that.)
+[^13]: 本稿執筆時点で、デマルコおよびジョーンズが「凝集度」についてどのような説明を行っていたかまでは確認できていない。ここではMartinの記述をそのまま受け取っている。
+[^14]: Martin（2003） p.95
+[^15]: Martin（2014）<br>> In the late 1990s I tried to consolidate these notions into a principle, which I called: The Single Responsibility Principle. (I have this vague feeling that I stole the name of this principle from Bertrand Meyer, but I have not been able to confirm that.)
 
 ASDにおいて “responsibility” はこう定義される。
 
-> In the context of the SRP, we define a responsibility to be ‘a reason for change’.[^15]
+> In the context of the SRP, we define a responsibility to be ‘a reason for change’.[^16]
 
 つまり、SRPにおける「責任」は「変更理由」という言葉によって定義される。
 
 さらに Martin は次のように述べる。
 
-> An axis of change is an axis of change only if the changes actually occur. It is not wise to apply the SRP, or any other principle for that matter, if there is no symptom.[^15]
+> An axis of change is an axis of change only if the changes actually occur. It is not wise to apply the SRP, or any other principle for that matter, if there is no symptom.[^16]
 
 ASDにおいて、SRPの「変更の理由」は実際に変更が発生してはじめて「変更の軸」となるのであって、その症状が発生していない内から適用するのは賢明でない（not wise）としている。
 
-[^15]: Martin(2003) p.97
+[^16]: Martin(2003) p.97
 
 また、永続化とビジネスルールの分離については次の記述がある。
 
-> The Employee class contains business rules and persistence control. These two responsibilities should almost never be mixed. Business rules tend to change frequently, and though persistence may not change as frequently, it changes for completely different reasons.[^16]
+> The Employee class contains business rules and persistence control. These two responsibilities should almost never be mixed. Business rules tend to change frequently, and though persistence may not change as frequently, it changes for completely different reasons.[^17]
 
-[^16]: Martin(2003) p.98
+[^17]: Martin(2003) p.98
 
 ビジネスルールは頻繁に変更される傾向にあるが、永続化はそれほど頻繁に変更されなくとも、全く異なる理由で変更される。故に、この2つはほぼ混ぜるべきではないとしている。
 
 #### 『Clean Architecture（CA）』（2017）における再定義
 
-CAでは、SRPが次のように定義を変更されている。[^17]
+CAでは、SRPが次のように定義を変更されている。[^18]
 
 > モジュールは、たったひとつのアクターに対して責務を負うべきである。
 
-[^17]: Martin（2017）7章
+[^18]: Martin（2017）7章
 
 ここで言う「アクター」とは、変更を望むユーザーやステークホルダーの集合のことだ。
 ASDでは「変更理由」という抽象的な軸だったものが、CAでは「組織上のアクター」という具体的な軸へと再構築されている。
@@ -450,15 +457,15 @@ ASDの説明は、複数の変更理由を抱えたモジュールが
 - 再テスト
 - 再デプロイ
 
-などのコストを同時に引き起こすことを避ける、という意図が基盤にある。[^18]これは「凝集度」に近い古典的設計思想である。
+などのコストを同時に引き起こすことを避ける、という意図が基盤にある。[^19]これは「凝集度」に近い古典的設計思想である。
 
-[^18]: Martin（2003）p.96<br>>Second, if a change to the GraphicalAplication causes the Rectangle to change for some reason, that change may force us to rebuild, retest, and redeploy the ComputationalGeometryApplication. If we forget to do this, that application may break in unpredictable ways.
+[^19]: Martin（2003）p.96<br>>Second, if a change to the GraphicalAplication causes the Rectangle to change for some reason, that change may force us to rebuild, retest, and redeploy the ComputationalGeometryApplication. If we forget to do this, that application may break in unpredictable ways.
 
 #### Clean Architecture の「アクター」概念は具体化による取りこぼしを起こす
 
-CAのSRPは「アクター単位で責務を持たせる」という具体的な枠組みになっている。本書の例を用いると、「雇用者の情報を保存する処理はDB管理者が規定するから、関連するアクターはCTOである」「雇用者の給料を計算する処理は経理部門が規定するから、関連するアクターはCFOである」といった具合である[^19]。
+CAのSRPは「アクター単位で責務を持たせる」という具体的な枠組みになっている。本書の例を用いると、「雇用者の情報を保存する処理はDB管理者が規定するから、関連するアクターはCTOである」「雇用者の給料を計算する処理は経理部門が規定するから、関連するアクターはCFOである」といった具合である[^20]。
 
-[^19]: Martin（2017）7章
+[^20]: Martin（2017）7章
 
 しかし、更新内容が「雇用者の給与テーブル変更反映」である場合はどうなるのだろうか。
 
@@ -551,15 +558,19 @@ SRPを題材にすると、その構造がよく見える。SRPに限らず、�
 
 - "Go To Statement Considered Harmful"
   - <https://dl.acm.org/doi/10.1145/362929.362947> 2025-12-08 15:15閲覧
-- GNU Smalltalk User’s Guide
+- 6.12.3 The truth about metaclasses - GNU Smalltalk User’s Guide
   - <https://www.gnu.org/software/smalltalk/manual/html_node/Why-is-_0023new-there_003f_0021_003f.html>
-- Ruby3.4 リファレンスマニュアル
+- class Class - Ruby3.4 リファレンスマニュアル
   - <https://docs.ruby-lang.org/ja/latest/class/Class.html>
-- MDN
+- Classes - MDN
   - <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes>
 - Eric Evans（2011）『エリック・エヴァンスのドメイン駆動設計』（翔泳社）今関剛 監訳, 和智右桂・牧野祐子 訳
 - Martin Fowler（2005）『エンタープライズアプリケーションアーキテクチャ』翔泳社　長瀬嘉秀 監訳, 株式会社テクノロジックアート 訳
 - Miran Lipovača(2012)『すごいHaskell たのしく学ぼう！』 （オーム社）田中英行・村主祟行 訳
+- IO モナドと副作用 - haskell.jp
+  - <https://haskell.jp/blog/posts/2020/io-monad-and-sideeffect.html>
+- TOUR OF SCALA - scala-lang.org
+  - <https://docs.scala-lang.org/ja/tour/basics.html>
 - Value Object - martinFowler.com
   - <https://martinfowler.com/bliki/ValueObject.html>
 - Value Objectについて整理しよう
