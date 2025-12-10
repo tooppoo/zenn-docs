@@ -2,7 +2,7 @@
 title: "「わかりやすさ」「説得力」は有害（Harmful）である"
 emoji: "🤔"
 type: "idea" # tech: 技術記事 / idea: アイデア
-published: false
+published: true
 ---
 
 ## はじめに
