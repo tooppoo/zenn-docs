@@ -41,7 +41,7 @@ E.W.ダイクストラ著『構造化プログラミング論』
 
 [^2]: ダイクストラ(1975) p.31
 
-この時点で最も簡単なプログラムは、以下のようになる。のようになる。のようになる。のようになる。
+この時点で最も簡単なプログラムは、以下のようになる。
 
 ```ts
 printOutFirst1000PrimeNumbers(); // 記述0
@@ -102,7 +102,7 @@ class IntegerArray {
 ```ts
 function printOutFirst1000PrimeNumbers() {
   // 記述1
-  let p: Table = new IntegerArray(1, 1000)
+  let p: IntegerArray = new IntegerArray(1, 1000)
   setFirst1000PrimeNumbers(p);
   printTable(p);
 }
