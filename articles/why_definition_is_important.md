@@ -85,13 +85,16 @@ TDD（Test-Driven Development）は、Red–Green–Refactor という短いサ�
 
 ### 「オブジェクト指向プログラミング」は一つではない：定義と歴史の軽視
 
-「オブジェクト指向プログラミング（以下、OOP）」も同様である。
+「オブジェクト指向プログラミング（以下、OOP）」もまた、しばしば混乱が見られる言葉だ。
+ある人は「継承・カプセル化・多態」が重要だと言い、ある人は「メッセージング」こそが重要だと言い、またある人は「変更容易性」こそが重要だと言う。
 
-「OOP」という言葉を見出したアラン・ケイが想定していたのは前者であり、そこで核心として捉えられていたのはまさに「messaging」である[^4]。
+ここでは、いわゆる「オブジェクト指向プログラミング言語」としても特に古い、SmalltalkとC++に着目して検討を進める。
+
+Smalltalkの生みの親であり、「オブジェクト指向プログラミング」という言葉を発明したその人であるアラン・ケイが、OOPの核心として想定していたのは「messaging」である[^4]。
 
 [^4]: Alan Kay(1998)<br/>> The big idea is "messaging" - that is what the kernal of Smalltalk/Squeak is all about (and it's something that was never quite completed in our Xerox PARC phase). The Japanese have a small word - ma - for "that which is in between" - perhaps the nearest English equivalent is "interstitial".
 
-一方、後者の「OOP」はビャーネ・ストロヴストルップによるC++を起点とした系譜であり、そこで注目されているのは「messaging」ではなく「データ抽象化」であった[^5]。ストロヴストルップ自身も、言語開発の時点でSmalltalkからの思想的影響はあまり受けていないことを明言している[^6]。
+一方、C++を開発したビャーネ・ストロヴストルップが「OOP」で注目しているのは「messaging」ではなく「データ抽象化」であった[^5]。ストロヴストルップ自身も、言語開発の時点でSmalltalkからの思想的影響はあまり受けていないことを明言している[^6]。
 
 少なくともこれらの記述から私が解釈する限り、これら2つのOOPは、少なくとも、同一の思想・文脈として連続的に語れるものではない。
 
