@@ -2,7 +2,7 @@
 title: "なぜソフトウェア開発では『定義』が問題解決に直結するのか"
 emoji: "🤔"
 type: "idea" # tech: 技術記事 / idea: アイデア
-published: false
+published: true
 ---
 
 ソフトウェア開発の文脈で、「専門用語の定義を追うのは無意味だ」という主張を見聞きした。
