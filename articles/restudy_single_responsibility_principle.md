@@ -173,7 +173,7 @@ interface Modem {
 > (...)
 > 一方、変両責任を異なるタイミングでの変更を生じさせるような変更がアプリケーションに生じない場合、分離は不要だ。むしろ分離は「不必要な複雑性」の臭いを放つだろう。
 
-この判断基準は重要だ。異なる責務が強いられるなら、分離すべき。しかし、そのような変更が発生しないなら、分離は「不必要な複雑性」を生むだけだ。
+この判断基準は重要だ。異なる責務が別々のタイミングで変更されるようなら、分離すべき。しかし、そもそも変更されない、あるいは常に同時に変更されるなら、分離はかえって「不必要な複雑性」を生む。
 
 > An axis of change is an axis of change only if the changes actually occur. It is not wise to apply the SRP, or any other principle for that matter, if there is no symptom.[^6]
 >
