@@ -20,7 +20,7 @@ topics: ["単一責任原則"]
 - 「ある関心事について、不正な動作にならないよう、正常に動作するよう制御する責任」[^1]
 - 「再利用性を高めるための原則」として、一つのコンポーネントは一つの機能のみを持つべき[^2]
 
-これらは、いずれも発案者Robert C. Martin（以下、Martin）の定義とは異なる軸での理解だ。
+これらは、いずれも発案者Robert C. Martin（以下、Martin）の定義とは異なる軸での理解だ[^3]。
 
 さらに複雑なことに、Martin自身がSRPの定義を変更している。『Agile Software Development, Principles, Patterns, and Practices』（2003年、以下ASD）、ブログ記事（2014年、以下Blog）、そして『Clean Architecture』（2017年、以下CA）では、定義が段階的に変化しているのだ。
 
@@ -29,15 +29,18 @@ topics: ["単一責任原則"]
 [^1]: https://qiita.com/MinoDriven/items/76307b1b066467cbfd6a
 [^2]: https://qiita.com/seya/items/8814e905693f00cdade2
 
+[^3]: ここで挙げている観点自体に問題があるわけではなく、むしろソフトウェア開発において一般に有効と思われるアプローチではある。しかしそれは「透明性」の観点から、SRPではなく別の概念として理解された方が好ましい。「透明性」については[別記事](https://zenn.dev/philomagi/articles/understandabiliity_is_harmful)を参照。
+
+
 ## SRPの思想的ルーツ
 
 SRPは突然現れた原則ではない。MartinはASDで既にその思想的背景を説明している。
 
-> The principle was described in the work of Tom Demarco and Meilir Page-Jones. The called it cohesion. They defined cohesion as the functional relatedness of the elements of a module. In this chapter we'll shift that meaning a bit and relate cohesion to the forces that cause a module, or a class, to change[^3].
+> The principle was described in the work of Tom Demarco and Meilir Page-Jones. The called it cohesion. They defined cohesion as the functional relatedness of the elements of a module. In this chapter we'll shift that meaning a bit and relate cohesion to the forces that cause a module, or a class, to change[^4].
 >
 > この原則はトム・デマルコとメイリル・ページ＝ジョーンズの著作で説明された。彼らはこれを凝集度と呼んだ。彼らは、モジュールの要素間の機能的関連性として凝集度を定義した。本章ではその意味を少し変え、凝集度をモジュールやクラスに変化をもたらす力と関連づける（以降、英文の翻訳は筆者による）。
 
-[^3]: Martin(2003) p.95
+[^4]: Martin(2003) p.95
 
 他、BlogでもMartinはその思想的背景に言及している。
 
@@ -49,7 +52,7 @@ SRPは突然現れた原則ではない。MartinはASDで既にその思想的�
 >
 > The 1970s and 1980s were a fertile time for principles of software architecture. Structured Programming and Design were all the rage. During that time the notions of Coupling and Cohesion were introduced by Larry Constantine, and amplified by Tom DeMarco, Meilir Page-Jones and many others.
 >
->In the late 1990s I tried to consolidate these notions into a principle, which I called: The Single Responsibility Principle. (I have this vague feeling that I stole the name of this principle from Bertrand Meyer, but I have not been able to confirm that.)[^4]
+>In the late 1990s I tried to consolidate these notions into a principle, which I called: The Single Responsibility Principle. (I have this vague feeling that I stole the name of this principle from Bertrand Meyer, but I have not been able to confirm that.)[^5]
 >
 > 1972年、デイビッド・L・パーナスは『システムをモジュールに分解する際に用いるべき基準について』と題する古典的論文を発表した。
 > (...)
@@ -61,7 +64,7 @@ SRPは突然現れた原則ではない。MartinはASDで既にその思想的�
 >
 > 1990年代後半、私はこれらの概念をひとつの原則に統合しようと試みた。私はこれを単一責任の原則と呼んだ（この原則の名称をバートランド・マイヤーから拝借したような漠然とした記憶があるが、確認はできていない）。
 
-[^4]: Martin(2014)
+[^5]: Martin(2014)
 
 このように、SRPはパーナスに端を発し、ダイクストラ、デマルコ、コンスタンティン、ジョーンズらによって洗練されてきたモジュール分割の理論を統合したものである。
 
@@ -71,17 +74,17 @@ SRPは突然現れた原則ではない。MartinはASDで既にその思想的�
 
 ASDにおけるSRPの定義は以下の通りだ。
 
-> A class should have only one reason to change[^3].
+> A class should have only one reason to change[^6].
 >
 > クラスは変更される理由を一つだけ持つべきである。
 
 Martinはさらに、「責任」を次のように定義する。
 
-> In the context of the SRP, we define a responsibility to be "a reason for change." If you can think of more than one motive for changing a class, then that class has more then one responsibility.[^5]
+> In the context of the SRP, we define a responsibility to be "a reason for change." If you can think of more than one motive for changing a class, then that class has more then one responsibility.[^6]
 >
 > SRPの文脈では、責任を「変更の理由」と定義する。あるクラスを変更する動機が複数思い浮かぶ場合、そのクラスは複数の責任を負っている。
 
-[^5]: Martin(2003) p.97
+[^6]: Martin(2003) p.97
 
 ### 問題の焦点と目的
 
@@ -89,9 +92,9 @@ v1の主目的は、**不要な依存関係と変更の波及を排除するこ�
 
 ASDにおいてMartinは、大きく分けて「技術的効率の損失」と「設計の脆弱性」の2点を問題点として挙げている。
 
-それらを説明するにあたり、Martinは以下のような`Rectangle`クラスを挙げている。これは、SRP違反の例である。[^6]
+それらを説明するにあたり、Martinは以下のような`Rectangle`クラスを挙げている。これは、SRP違反の例である。[^7]
 
-[^6]: Martin(2003) p.96
+[^7]: Martin(2003) p.96
 
 ![ComputationalGeometryApplication, Rectanble, GraphicalApplication, GUIモジュールが図に含まれている. Rectangleはdraw():voidとarea():double という2つのpublicメソッドを持つ. CopuationalGeometoryApplicationからRectangleへ依存の矢印が引かれている. GraphicalApplicationからRectangleとGUIへ依存の矢印が引かれている. RectangleからGUIへ依存の矢印が引かれている. 図のタイトルは「More than one responsibility」である.](/images/asd_rectangle_before.png)
 
@@ -104,7 +107,7 @@ Martinは`Rectangle`クラスの例を挙げる。このクラスには、幾何
 
 計算幾何学アプリケーションは`Rectangle`を数学的処理に使うが、画面描画はしない。しかし、この設計では以下の問題が発生する。
 
-> This violation of the SRP causes several nasty problems. First, we must include the GUI in the computational geometry application. If this were a C++ application, the GUI would have to be linked in, consuming link time, compile time, and memory footprint. In a Java application, the .class files for the GUI have to be deployed to the target platform[^6].
+> This violation of the SRP causes several nasty problems. First, we must include the GUI in the computational geometry application. If this were a C++ application, the GUI would have to be linked in, consuming link time, compile time, and memory footprint. In a Java application, the .class files for the GUI have to be deployed to the target platform[^7].
 >
 > このSRP違反は複数の厄介な問題を引き起こる。第一に、計算幾何学アプリケーションにGUIを含める必要がある。C++アプリケーションの場合、GUIをリンクする必要があり、リンク時間・コンパイル時間・メモリ使用量を消費する。Javaアプリケーションでは、GUIの.classファイルをターゲットプラットフォームにデプロイしなければならない。
 
@@ -120,14 +123,14 @@ Martinは、別チャプターで作成したボウリングゲームのアプ�
 > なぜこれら二つの責任を別々のクラスに分離することが重要だったのか？それぞれの責任が変更の軸となるからだ。(...)
 
 > Why was it important to separate these two responsibilities into separate classes? Because each responsibility is an axis of change. When the requirements change, that change will be manifest through a change in responsibility amongst the classes. If a class assumes more than one responsibility, then there will be more than one reason for it to change.
-> If a class has more than one responsibility, then the responsibilities become coupled. Changes to one responsibility may impair or inhibit the ability of the class to meet the others. This kind of coupling leads to fragile desings that break in unexpected ways when changed.[^6]
+> If a class has more than one responsibility, then the responsibilities become coupled. Changes to one responsibility may impair or inhibit the ability of the class to meet the others. This kind of coupling leads to fragile desings that break in unexpected ways when changed.[^7]
 > 
 > なぜこれら二つの責任を別々のクラスに分離することが重要だったのか？それぞれの責任が変更の軸となるからだ。要件が変更されると、その変更はクラス間の責任の変遷を通じて顕在化する。クラスが複数の責任を担う場合、変更の理由も複数存在する。
 > クラスが複数の責任を持つと、それらの責任は結合される。一つの責任への変更が、他の責任を果たすクラスの能力を損なったり妨げたりする可能性がある。この種の結合は、変更時に予期せぬ形で壊れる脆弱な設計につながる。
 
 Rectangleの例で言えば、GUIの変更が`Rectangle`クラスに変更を要求した場合、その変更が幾何学的計算に予期せぬ影響を与える可能性がある。
 
-> Second, if a change to the `GraphicalAplication` causes the `Rectangle` to change for some reason, that change may force us to rebuild, retest, and redeploy the `ComputationalGeometryApplication`. If we forget to do this, that application may break in unpredictable ways.[^6]
+> Second, if a change to the `GraphicalAplication` causes the `Rectangle` to change for some reason, that change may force us to rebuild, retest, and redeploy the `ComputationalGeometryApplication`. If we forget to do this, that application may break in unpredictable ways.[^7]
 >
 > 第二に、`GraphicalApplication`の変更が何らかの理由で`Rectangle`に対する変更をもたらした場合、その変更により`ComputationalGeometryApplication`の再構築・再テスト・再デプロイが必要になる可能性がある。これを怠ると、アプリケーションが予測不能な形で動作しなくなる恐れがある。
 
@@ -152,13 +155,13 @@ SRP v1の主目的は、**関係のない理由による変更から、クラス
 `Modem`インターフェースの例で、Martinは接続管理（`dial`, `hangup`）とデータ通信（`send`, `recv`）の二つの責任を指摘する。
 しかし、すぐに分離すべきかと問われれば、以下のように答えている。
 
-> Should these two responsibilities be separated? That depends on how the application is changing[^5]. 
+> Should these two responsibilities be separated? That depends on how the application is changing[^6]. 
 >
 > これらの2つの責任は分離すべきでしょうか？それはアプリケーションがどのように変化するかによります。
 
 この判断基準は重要だ。接続関数のシグネチャの変更が頻繁に発生し、その度にデータ通信を扱うクラスの再コンパイル・再デプロイが強いられるなら、分離すべき。しかし、そのような変更が発生しないなら、分離は「不必要な複雑性」を生むだけだ。
 
-> An axis of change is an axis of change only if the changes actually occur. It is not wise to apply the SRP, or any other principle for that matter, if there is no symptom.[^5]
+> An axis of change is an axis of change only if the changes actually occur. It is not wise to apply the SRP, or any other principle for that matter, if there is no symptom.[^6]
 >
 > 変更軸は、実際に変更が発生する場合にのみ変更軸となります。症状がないのにSRP（単一責任の原則）やその他の原則を適用するのは賢明ではありません。
 
@@ -172,13 +175,13 @@ ASDにおいて、SRPの「変更の理由」は実際に変更が発生して�
 
 2014年、Martinは自身のブログ「The Clean Code Blog」にて、SRPについて重要な記述を加えている。
 
-> And this gets to the crux of the Single Responsibility Principle. *This principle is about people*.[^4]"
+> And this gets to the crux of the Single Responsibility Principle. *This principle is about people*.[^5]"
 >
 > そしてこれが「単一責任原則」の核心になる。*この原則は、人々に関するものである*
 
 この記事においておそらく初めて、MartinはSRPの「変更の理由」を、**人々**に明示的に結びつけた。
 
-> When you write a software module, you want to make sure that when changes are requested, those changes can only originate from a single person, or rather, a single tightly coupled group of people representing a single narrowly defined business function.[^4]
+> When you write a software module, you want to make sure that when changes are requested, those changes can only originate from a single person, or rather, a single tightly coupled group of people representing a single narrowly defined business function.[^5]
 >
 > ソフトウェアモジュールを記述する際には、変更が要求された場合、その変更が単一の人物、あるいは単一の狭く定義された業務機能を代表する緊密に連携したグループからのみ発生することを明確にすべきだ。
 
@@ -216,13 +219,13 @@ Martinはこの時点で、SRPを別の言葉でも表現している。
 これは凝集度・結合度との関係を明示する表現だ。
 
 ここで語られているのは、「何を集め、何を分離するか」ということについての指針である。すなわち、「分離」だけでなく「結合」もここでは重要な判断基準として示されている。
-このことから、SRPを「一つのモジュールには一つの機能だけをもたせる」という原則として理解するのは、Martinの定義よりもやや狭い意味になっていると言える[^7]。
+このことから、SRPを「一つのモジュールには一つの機能だけをもたせる」という原則として理解するのは、Martinの定義よりもやや狭い意味になっていると言える[^8]。
 
-[^7]: これは憶測だが、UNIX哲学の「一つのことを上手くやる」との混同が生じているのかもしれない。
+[^8]: これは憶測だが、UNIX哲学の「一つのことを上手くやる」との混同が生じているのかもしれない。
 
 ### 「変更の理由」は「人々」へ
 
-> However, as you think about this principle, remember that the reasons for change are *people*. It is *people* who request changes.[^4]
+> However, as you think about this principle, remember that the reasons for change are *people*. It is *people* who request changes.[^5]
 >
 > しかしながら、この原則について考えるときには、「変更の理由は*人々*である」ということを覚えておくこと。*人々*こそが変更を求めるのだ。
 
@@ -232,13 +235,11 @@ Martinはこの時点で、SRPを別の言葉でも表現している。
 
 ### 定義の明確化
 
-CAにおいて、Martinは従来の表現が誤解を招いたことを認めた[^8]上で、新しい定義を提示している。
+CAにおいて、Martinは従来の表現が誤解を招いたことを認めた[^9]上で、新しい定義を提示している。
 
-[^8]: Martin(2017) p.81 "SOLID原則のなかで最も誤解されがちなのが「単一責任の原則（SRP）」だろう。おそらくその原因は、名前があまりよくなかったことだ。"
+[^9]: Martin(2017) p.81 "SOLID原則のなかで最も誤解されがちなのが「単一責任の原則（SRP）」だろう。おそらくその原因は、名前があまりよくなかったことだ。"
 
-> モジュールはたったひとつのアクターに対して責務を負うべきである。[^9]
-
-[^9]: Martin(2017) p.82
+> モジュールはたったひとつのアクターに対して責務を負うべきである。[^10]
 
 ここで「アクター」とは、特定の一個人や一役職を指すものではなく、「変更を望む人たちをひとまとめにしたグループ」だ[^10]。2014年の「tightly coupled group of people representing a single narrowly defined business function」が、「アクター」という用語で整理された形だ。
 
@@ -284,7 +285,7 @@ Martinは「マージのリスク」について以下のように述べる。
 
 **無関係なアクター（CFO）まで影響を受ける可能性がある**。これがv2の抱えるもう一つの問題である。
 
-[^12]: Martin(2017) p.84
+[^12]: Martin(2017) p.84-85
 
 #### v1とv2の対比：問題の性質の変化
 
@@ -317,8 +318,6 @@ CAの「まとめ」で、Martinは以下のように述べている。
 
 つまり、SRP自体はクラスレベルの原則であり、より上位のレベル（コンポーネント、アーキテクチャ）には別の原則が存在する。v1とv2の違いは適用レベルではなく、**どのような観点から観察するか、の種類**にある。
 
-[^12]: Martin(2017) p.85
-
 ## 批判的分析
 
 v2（アクター）は組織的/業務的関心を扱うには強力だが、技術的関心の扱いには限界がある。以下、Martinのテキストを分析してこの主張を裏付ける。
@@ -327,9 +326,7 @@ v2（アクター）は組織的/業務的関心を扱うには強力だが、�
 
 CAでは、`Employee`クラスの`save()`メソッドを「CTOアクター」に帰属させている。
 
-> save() メソッドは、データベース管理者が規定する。報告先はCTO だ。[^13]
-
-[^13]: Martin(2017) p.83
+> save() メソッドは、データベース管理者が規定する。報告先はCTO だ。[^11]
 
 これは技術的関心（永続化）もv2の枠組みで扱おうとする試みだ。つまり、v2は組織的関心だけでなく、技術的関心も「アクター」という概念で統一的に扱おうとしているように見える。
 
@@ -341,7 +338,7 @@ CAでは、`Employee`クラスの`save()`メソッドを「CTOアクター」に
 
 Blog 2014で、Martinは技術的分離の重要性を述べている。
 
-> This is the reason we do not put SQL in JSPs. This is the reason we do not generate HTML in the modules that compute results. This is the reason that business rules should not know the database schema. This is the reason we separate concerns.[^4]
+> This is the reason we do not put SQL in JSPs. This is the reason we do not generate HTML in the modules that compute results. This is the reason that business rules should not know the database schema. This is the reason we separate concerns.[^5]
 
 注目すべきは、これらの分離を説明する際、**アクター概念を使っていない**点だ。
 
@@ -354,7 +351,7 @@ Martinはこれらの技術的分離について、「we separate concerns」と
 
 Blog 2014でのアクターの定義を再確認する。
 
-> a single tightly coupled group of people representing a single narrowly defined business function[^4]
+> a single tightly coupled group of people representing a single narrowly defined business function[^5]
 >
 > 単一の狭く定義された業務機能を代表する、緊密に連携した人々のグループ
 
@@ -495,9 +492,7 @@ v1なら、以下の通り自然に説明することができる。
 - `save()`（永続化）
 - → 異なる技術的変更理由なので分離
 
-結果として、以下のようなクラス構造になる。最終的な構造はCAの例と同じだが、CAでは「アクター」理由で分離されていた永続化を、ここではv1の「変更の理由」に基づいて分離している。
-
-[^14]: Martin(2017) p.85
+結果として、以下のようなクラス構造になる。最終的な構造はCAの例と同じだが、CAでは「アクター」理由で分離されていた永続化を、ここではv1の「変更の理由」に基づいて分離している。[^12]
 
 - `PayCalculator`（CFOアクター、ビジネスロジック）
 - `HoursReporter`（COOアクター、ビジネスロジック）
