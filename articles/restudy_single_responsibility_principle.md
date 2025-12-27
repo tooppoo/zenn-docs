@@ -362,7 +362,7 @@ Blog 2014で、Martinは技術的分離の重要性を述べている。
 - 「SQLをJSPに入れない」は、どのアクター間の分離なのか？
 - 「ビジネスルールがDBスキーマを知らない」は、誰と誰の責任分離なのか？
 
-Martinはこれらの技術的分離について、「we separate concerns」と述べ、むしろ古典的な**関心の分離（Separation of Concerns）**に言及している。アクター概念でこれらを説明していない。
+Martinはこれらの技術的分離について、「we separate concerns」と述べ、むしろ古典的な**関心の分離（Separation of Concerns）**に言及しており、アクター概念でこれらを説明していない。
 
 #### 理由2. DBAは「業務機能を代表する」か
 
