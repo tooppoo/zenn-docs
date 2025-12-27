@@ -354,6 +354,8 @@ CAでは、`Employee`クラスの`save()`メソッドを「CTOアクター」に
 Blog 2014で、Martinは技術的分離の重要性を述べている。
 
 > This is the reason we do not put SQL in JSPs. This is the reason we do not generate HTML in the modules that compute results. This is the reason that business rules should not know the database schema. This is the reason we separate concerns.[^5]
+>
+> これが、JSPにSQLを記述しない理由である。これが、結果を計算するモジュールでHTMLを生成しない理由である。これが、ビジネスルールがデータベーススキーマを知るべきでない理由である。これが、関心を分離する理由である。
 
 注目すべきは、これらの分離を説明する際、**アクター概念を使っていない**点だ。
 
