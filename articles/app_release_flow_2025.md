@@ -54,9 +54,6 @@ graph TD
     B --> C[マージ]
     C --> E[自動リリース<br/>バージョン据え置き]
     E --> F[本番デプロイ<br/>Cloudflare Pages]
-    
-    style E fill:#e1f5ff
-    style F fill:#e1f5ff
 ```
 
 実際のGithub Actionは [.github/workflows/web-auto-deploy-deps.yml](https://github.com/tooppoo/ac6_assemble_tool/blob/main/.github/workflows/web-auto-deploy-deps.yml)を参照。
@@ -88,10 +85,6 @@ graph TD
     I --> J[workflow_dispatch<br/>手動リリース]
     J --> K[GitHub Release<br/>+ タグ作成]
     J --> L[本番デプロイ<br/>Cloudflare Pages]
-    
-    style J fill:#ffe1e1
-    style K fill:#fff4e1
-    style L fill:#fff4e1
 ```
 
 実際のGithub Actionは以下を参照
