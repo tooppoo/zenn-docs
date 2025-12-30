@@ -28,23 +28,19 @@ published: true
 開発者が修正または`changesets` コマンドを使って、変更履歴ファイルを作成できる。
 
 `changesets` 用の[GitHub Action](https://github.com/changesets/action)も用意されている。
-これを使うと
+これを使うと、以下の処理を自動で行ってくれる。
 
 - 変更履歴ファイルがある -> バージョン更新PRを自動作成
 - 変更履歴ファイルがない -> 何もしない
-
-という判定・処理を自動で行ってくれる。
 
 ## 2種類のリリースフロー
 
 変更内容によって、「サクッと or 速やかにデプロイしたい」ものと「しっかり確認してからデプロイ」するものとがある。今回のケースでは、renovateによる依存更新が前者、普段の開発による変更内容が後者だった。
 
-そこで
+そこで、以下のような使い分けをした。
 
 - renovate更新では「PRをマージしたらバージョン更新もスキップしてすぐにリリース」
 - 普段の開発では「手動確認とバージョン更新を挟んで確実にリリース」
-
-という使い分けをした。
 
 ## renovateによる依存更新のリリースフロー
 
@@ -87,7 +83,7 @@ graph TD
     J --> L[本番デプロイ<br/>Cloudflare Pages]
 ```
 
-実際のGithub Actionは以下を参照
+実際のGithub Actionは以下を参照。
 
 - [.github/workflows/update-package-version.yml](https://github.com/tooppoo/ac6_assemble_tool/blob/main/.github/workflows/update-package-version.yml)
 - [.github/workflows/web-create-release.yml](https://github.com/tooppoo/ac6_assemble_tool/blob/main/.github/workflows/web-create-release.yml)
@@ -126,7 +122,7 @@ graph TD
 ## バージョン表示の工夫
 
 アプリケーション内でバージョンとコミットハッシュを表示し、どの変更が本番に反映されているかを特定可能にしている（例：`v3.2.6-a2bc949`）。
-これにより、どの変更が本番に反映されているか、バージョン更新によらず常に特定可能にしている。
+これにより、どの変更が本番へ反映されているか、バージョン更新によらず特定可能としている。
 
 以下は [`vite.config.ts`](https://github.com/tooppoo/ac6_assemble_tool/blob/main/packages/web/vite.config.ts) からの抜粋。
 
