@@ -32,6 +32,13 @@ E.W.ダイクストラ著『構造化プログラミング論』
 
 以下、『構造化プログラミング論』の記述に従って、課題を解決するまでの手順を記述していく。ただし、本文で疑似言語を使って記述されているプログラム例は、以下ではすべてTypeScriptで置き換えていく。TypeScriptによるコードは、筆者による翻案であり、ダイクストラのものそのままではない。
 
+なお、原文の擬似コードを見る限り、以下の制約があると思われる。
+
+- 変数はグローバル変数のみ
+- プロシージャは存在しない
+
+よって、本稿での翻訳もそれに準じて、関数・スコープは使わずにコードを記述する。これは、翻訳を可能な限り忠実にすると共に、翻訳が正確に行われているかどうかを比較可能にするための措置でもある。したがって、出来上がったコードは、少なくとも現代的な感覚では「良いコード」とは言い難いものになっている点を承知願いたい。
+
 ---
 
 ダイクストラによる基本的なプログラム作成パターンは以下[^2]。
@@ -51,14 +58,12 @@ printOutFirst1000PrimeNumbers(); // 記述0
 最初の案として、「素数の生成」と「印刷」を分離する[^3]。
 
 ```ts
-function printOutFirst1000PrimeNumbers() {
-  // 記述1
-  let p: 表p
-  setFirst1000PrimeNumbers(p);
-  printTable(p);
-}
+var p: 表p
 
-printOutFirst1000Primenumbers();
+// 記述1
+setFirst1000PrimeNumbers(p);
+printTable(p);
+
 ```
 
 この時点では「素数」という概念の性質も、印刷結果の割り付け方も一切プログラムには関わっていない（＝決定していない）。「これは、"分割統治"という大原則を適用する試みが、多少とも成功してきていることを暗示」している[^4]。
@@ -82,14 +87,14 @@ class IntegerArray {
   }
 
   getItem(i: number): number {
-    if (i < this.min || 1000 < this.max) throw new Error('OutOfRange')
+    if (i < this.min || this.max < i) throw new Error('OutOfRange')
 
     // 初期値については本文でも特に言及が無い
     // おそらく0や-1など、小さな数で初期化されていることが前提されている？
     return this.array[i - 1] ?? 0
   }
   setItem(i: number, value: number): void {
-    if (i < this.min || 1000 < this.max) throw new Error('OutOfRange')
+    if (i < this.min || this.max < i) throw new Error('OutOfRange')
 
     this.array[i - 1] = value
   }
@@ -100,14 +105,12 @@ class IntegerArray {
 この時、記述1は以下のようになる。
 
 ```ts
-function printOutFirst1000PrimeNumbers() {
-  // 記述1
-  let p: IntegerArray = new IntegerArray(1, 1000)
-  setFirst1000PrimeNumbers(p);
-  printTable(p);
-}
+var p: IntegerArray = new IntegerArray(1, 1000)
 
-printOutFirst1000Primenumbers();
+// 記述1
+setFirst1000PrimeNumbers(p);
+printTable(p);
+
 ```
 
 「記述1」は、「記述0のつぎの洗練」という意味で「1」と呼ぶことにする[^6]。さらに記述1の構成要素を、次のように分解・ラベリングする。
@@ -160,15 +163,13 @@ function setFirst1000PrimeNumbers(p: IntegerArray): void {
 
 ```ts
 // 2b1(2)
-function setFirst1000PrimeNumbers(p: IntegerArray): void {
-    let k = 0;
-    let j = 1;
+var k = 0;
+var j = 1;
 
-    while (k < 1000) {
-      j = addIndexToNextPrimeNumber(j);
-      k = k + 1;
-      p.setItem(k, j)
-    }
+while (k < 1000) {
+  addIndexToNextPrimeNumber(j);
+  k = k + 1;
+  p.setItem(k, j)
 }
 ```
 
@@ -176,15 +177,11 @@ function setFirst1000PrimeNumbers(p: IntegerArray): void {
 
 ```ts
 // 2b1(2)a
-function addIndexToNextPrimeNumber(j: number): number {
-  let jprime: boolean = false;
-  do {
-    j = j + 1;
-    jprime = indexIsPrime(j);
-  } while (!jprime)
-
-  return j;
-}
+var jprime: boolean = false;
+do {
+  j = j + 1;
+  jprime = indexIsPrime(j);
+} while (!jprime)
 ```
 
 [^11]: ダイクストラ(1975)p.36-37
@@ -195,28 +192,22 @@ function addIndexToNextPrimeNumber(j: number): number {
 
 ```ts
 // 2b1(3)
-function setFirst1000PrimeNumbers(p: IntegerArray): void {
-    let k = 1;
-    let j = 1;
-    p.setItem(1, 2)
+var k = 1;
+var j = 1;
+p.setItem(1, 2)
 
-    while (k < 1000) {
-      j = addIndexToNextOddPrimeNumber(j);
-      k = k + 1;
-      p.setItem(k, j)
-    }
+while (k < 1000) {
+  addIndexToNextOddPrimeNumber(j);
+  k = k + 1;
+  p.setItem(k, j)
 }
 
 // 2b1(3)a
-function addIndexToNextOddPrimeNumber(j: number): number {
-  let jprime: boolean = false;
-  do {
-    j = j + 2;
-    jprime = indexIsPrime(j);
-  } while (!jprime)
-
-  return j;
-}
+var jprime: boolean = false;
+do {
+  j = j + 2;
+  jprime = indexIsPrime(j);
+} while (!jprime)
 ```
 
 続いて2b1(3)aを「洗練」することで、2b2(3)が得られる。2b1(3)aを「洗練」するために「素因数だけを試せばよい」という代数の知識、および「試す素数は、既にpに計算されている」という事実を用いる。利用する事実は、以下である[^13]。
@@ -229,23 +220,15 @@ function addIndexToNextOddPrimeNumber(j: number): number {
 [^14]:  ダイクストラ(1975)p.39 Donald Knuthの批評より<br>> ここであなたは、重大な落ち(原文ママ)をおかしています。あなたのプログラムは、整数論の深い結果を使っているのです。すなわち、 `p[n]` がn番目の素数を表すとすると、 `p[n+1] < p[n]^2` がつねに成り立つことです。
 <!-- textlint-enable no-mix-dearu-desumasu -->
 
-これらより、2b3(3)aを以下の記述で表す[^15]。
+これらより、2b2(3)aを以下の記述で表す[^15]。
 
 ```ts
-function addIndexToNextOddPrimeNumber(j: number, p: IntegerArray): number {
-  let ord: number = 1;
-  while (p.getItem(ord) ^ 2 <= j) {
-    ord = ord + 1
-  }
-
-  let n: number = 2;
-  let jprime: boolean = true;
-  while (n < ord && jprime) {
-    jprime = pnIsNotFactorOf(j);
-    n = n + 1
-  }
-
-  return j;
+// 2b2(3)3
+var n: number = 2;
+var jprime: boolean = true;
+while (n < ord && jprime) {
+  jprime = pnIsNotFactorOf(j);
+  n = n + 1
 }
 ```
 
@@ -257,16 +240,15 @@ function addIndexToNextOddPrimeNumber(j: number, p: IntegerArray): number {
 
 ```ts
 // 2b1(4)
-function setFirst1000PrimeNumbers(p: IntegerArray): void {
-    let k = 1;
-    p.setItem(1, 2)
-    let { j } = setJTo1(); // 2b1(4)b
+var j: number;
+var k = 1;
+p.setItem(1, 2)
+setJTo1(); // 2b1(4)b
 
-    while (k < 1000) {
-      j = addJAndMakeNextOddPrimeNumber(j); // 2b1(4)a
-      k = k + 1;
-      p.setItem(k, j)
-    }
+while (k < 1000) {
+  makeJNextOddPrimeNumber(j); // 2b1(4)a
+  k = k + 1;
+  p.setItem(k, j)
 }
 
 ```
@@ -285,48 +267,36 @@ function setFirst1000PrimeNumbers(p: IntegerArray): void {
 ```ts
 //2b2(4):
 
-// 2b1(4)a
-function addJAndMakeNextOddPrimeNumber(j: number) {
-  let jprime: boolean;
-  do {
-    { j } = jPlus2(j); //2b2(4)c
-    jprime = isPrimeNumber(j) //2b2(4)d
-  } while(!jprime)
+//// 2b1(4)a
+var jprime: boolean;
+do {
+  jPlus2(j); //2b2(4)c
+  jprime = isPrimeNumber(j) //2b2(4)d
+} while(!jprime)
 
-  return j;
-}
-
-// 2b1(4)b = 2b2(4)b = setJTo1
+//// 2b1(4)b = 2b2(4)b = setJTo1
 ```
 
 2b2(4)b~d は、2b3(4)a~cを定めつつ以下のようにかける[^17]。
 
 ```ts
-// 2b2(4)b
-function setJTo1() {
-  return {
-    j: 1,
-    ord: initializeOrd(), // 2b3(4)a
-  }
-}
+// 2b3(4)
+var ord: number
 
-// 2b2(4)c
-function jPlus2({ j, ord }: { j: number, ord: number }) {
-  return {
-    j: j + 2,
-    ord: adjustOrd({ j, ord }), // 2b3(4)b
-  }
-}
+//// 2b2(4)b
+j = 1
+initializeOrd(), // 2b3(4)a
 
-// 2b2(4)d
-function isPrimeNumber(p: IntegerArray, n: number, { j, ord }: { j: number, ord: number }) {
-  let n = 2;
-  let jprime = true;
-  while (n < ord && jprime) {
-    jprime = isNotFunctor(p, n, j) // 2b3(4)c
-    n = n + 1
-  }
-  return jprime;
+//// 2b2(4)c
+j = j + 2,
+adjustOrd(ord), // 2b3(4)b
+
+//// 2b2(4)d
+var n = 2;
+jprime = true;
+while (n < ord && jprime) {
+  jprime = isNotFunctor(p.getItem(n)) // 2b3(4)c
+  n = n + 1
 }
 ```
 
@@ -347,20 +317,13 @@ function isPrimeNumber(p: IntegerArray, n: number, { j, ord }: { j: number, ord:
 // 2b3(4)a = 2b4(4)a = initializeOrd
 
 // 2b3(4)b
-function adjustOrd({ j, ord }: { j: number, ord: number }) {
-  if (isOrdTooSmall({ j, ord })) { // 2b4(4)b
-    return ordPlus1({ j, ord }) // 2b4(4)c
-  }
-  else {
-    return { j, ord }
-  }
+if (isOrdTooSmall()) { // 2b4(4)b
+  ordPlus1() // 2b4(4)c
 }
 
 // 2b3(4)c
-function isNotFunctor(p: IntergerArray, n: number, j: number): number {
-  const r = mod(p.getItem(n), j) // 2b4(4)d
-  return r !== 0
-}
+var r = mod(p.getItem(n), j) // 2b4(4)d
+jprime = r != 0
 ```
 
 - 2b4(4)a: initializeOrd
@@ -400,7 +363,7 @@ mult.getItem(n) < j
 許しうる `ord` の最大値ということから、 `isOrdSmall` を判定するのは以下式による。
 
 ```ts
-p.getItem(ord) ^ 2 <= j
+Math.pow(p.getItem(ord), 2) <= j
 ```
 
 ただし、 `p.getItem(ord) ^ 2` の値を持つ変数squareを導入することによって、比較の回数を減らせると考える[^20]。
@@ -411,36 +374,31 @@ p.getItem(ord) ^ 2 <= j
 
 ```ts
 // 2b5(4)
-let square: number;
-let mult: IntegerArray = new IntegerArray(1, 30);
+var square: number;
+var mult: IntegerArray = new IntegerArray(1, 30);
 
-// 2b4(4)a
-function initializeOrd() {
-  return { ord: 1, square: 4 };
+//// 2b4(4)a
+ord = 1;
+square = 4;
+
+//// 2b4(4)b
+square <= j;
+//// 2b4(4)c
+mult.setItem(ord, square);
+ord = ord + 1;
+square = Math.pow(p.getItem(ord), 2),
+
+//// 2b4(4)d
+while (mult.getItem(n) < j) {
+  mult.setItem(n, mult.getItem(n) + p.getItem(n));
 }
-// 2b4(4)b
-function isOrdToSmall({ square, j }: { square: number, j: number }) {
-  return square <= j;
-}
-// 2b4(4)c
-function ordPlus1({ square, ord, p }: { p: IntegerArray, square: number, ord: number }) {
-  return {
-    ord: ord + 1,
-    squarre: p.getItem(ord) ^ 2,
-  }
-}
-// 2b4(4)d
-function mod(mult: IntegerArray, p: integerArray, n: number, j: number) {
-  while (mult.getItem(n) < j) {
-    mult.setItem(n, mult.getItem(n) + p.getItem(n));
-  }
-  return j - mult.getItem(n)
-}
+r = j - mult.getItem(n)
 ```
 
 ---
 
 あとからの「洗練」によって追加された変数など、各所の辻褄を合わせて結合すると、全体としては以下のようになる。
+なお、 `printTable` については本文で言及が無いため、単なる `console.log` で置き換えた。
 
 ```ts
 class IntegerArray {
@@ -449,14 +407,14 @@ class IntegerArray {
   }
 
   getItem(i: number): number {
-    if (i < this.min || 1000 < this.max) throw new Error('OutOfRange')
+    if (i < this.min || this.max < i) throw new Error('OutOfRange')
 
     // 初期値については本文でも特に言及が無い
     // おそらく0や-1など、小さな数で初期化されていることが前提されている？
     return this.array[i - 1] ?? 0
   }
   setItem(i: number, value: number): void {
-    if (i < this.min || 1000 < this.max) throw new Error('OutOfRange')
+    if (i < this.min || this.max < i) throw new Error('OutOfRange')
 
     this.array[i - 1] = value
   }
@@ -466,104 +424,51 @@ class IntegerArray {
   }
 }
 
-const mult = new IntegerArray(1, 30)
+var p: IntegerArray = new IntegerArray(1, 1000)
+var r: number
 
-function printOutFirst1000PrimeNumbers() {
-  // 記述1
-  let p = new IntegerArray(1, 1000)
-  setFirst1000PrimeNumbers(p);
-  printTable(p);
-}
+var j: number;
+var k: number;
+var n: number;
+var ord: number;
+var square: number;
+var jprime: boolean;
+var mult: IntegerArray = new IntegerArray(1, 30);
 
-function printTable(p: IntegerArray) {
-  // 本文では、印刷の処理に関する言及は無し。
-  // とりあえず標準出力するだけ。
-  console.log(p.toArray());
-}
+p.setItem(1, 2)
+j = 1
+k = 1
+ord = 1;
+square = 4;
 
-type JValueSet = { j: number, ord: number, square: number }
-function setFirst1000PrimeNumbers(p: IntegerArray): void {
-  let k = 1;
-  p.setItem(1, 2)
-  let { j, ord, square } = setJTo1();
-
-  while (k < 1000) {
-    j = addJAndMakeNextOddPrimeNumber(p, { j, ord, square });
-    k = k + 1;
-    p.setItem(k, j)
-  }
-}
-
-function addJAndMakeNextOddPrimeNumber(p: IntegerArray, { j, ord, square }: JValueSet) {
-  let jprime: boolean;
-  let j2: JValueSet
+while (k < 1000) {
   do {
-    j2 = jPlus2(p, { j, ord, square });
-    jprime = isPrimeNumber(p, j2);
+    j = j + 2;
+
+    if (square <= j) {
+      mult.setItem(ord, square);
+      ord = ord + 1;
+      square = Math.pow(p.getItem(ord), 2);
+    }
+
+    n = 2;
+    jprime = true;
+    while (n < ord && jprime) {
+      while (mult.getItem(n) < j) {
+        mult.setItem(n, mult.getItem(n) + p.getItem(n));
+      }
+      r = j - mult.getItem(n)
+      jprime = r != 0
+
+      n = n + 1
+    }
   } while(!jprime)
 
-  return j2.j;
+  k = k + 1;
+  p.setItem(k, j)
 }
 
-function setJTo1() {
-  const { ord, square } = initializeOrd();
-  return {
-    j: 1,
-    ord,
-    square,
-  }
-}
-function jPlus2(p: IntegerArray, { j, ord, square }: JValueSet) {
-  const adjusted = adjustOrd(p, { j, ord, square });
-  return {
-    j: j + 2,
-    ord: adjusted.ord,
-    square: adjusted.square,
-  }
-}
-function isPrimeNumber(p: IntegerArray, { j, ord, square }: JValueSet) {
-  let n = 2;
-  let jprime = true;
-  while (n < ord && jprime) {
-    jprime = isNotFunctor(p, n, j)
-    n = n + 1
-  }
-  return jprime;
-}
-function adjustOrd(p: IntegerArray, { j, ord, square }: JValueSet) {
-  if (isOrdTooSmall({ j, ord, square })) {
-    return ordPlus1(p, { j, ord, square });
-  }
-  else {
-    return { j, ord, square };
-  }
-}
-function isNotFunctor(p: IntegerArray, n: number, j: number): boolean {
-  const r = mod(p, n, j)
-  return r !== 0
-}
-
-function initializeOrd() {
-  return { ord: 1, square: 4 };
-}
-function isOrdTooSmall({ square, j }: JValueSet) {
-  return square <= j;
-}
-function ordPlus1(p: IntegerArray, { j, ord }: JValueSet) {
-  return {
-    j,
-    ord: ord + 1,
-    square: p.getItem(ord) ^ 2,
-  }
-}
-function mod(p: IntegerArray, n: number, j: number) {
-  while (mult.getItem(n) < j) {
-    mult.setItem(n, mult.getItem(n) + p.getItem(n));
-  }
-  return j - mult.getItem(n)
-}
-
-printOutFirst1000PrimeNumbers();
+console.log(p);
 ```
 
 ここで定義している各種関数群は、可読性・汎用性などは無視して、できるかぎり本書で日本語にかかれている箇所の愚直な翻訳となるよう命名している。
@@ -573,6 +478,7 @@ printOutFirst1000PrimeNumbers();
 
 サンプルコードの翻案には苦労させられたが、実際に紐解いてみれば、そこには「思いがけない解法」や「目を見張るような技巧」は何もなかったと言って良い。
 最終的なプログラムはそこそこのサイズになり、処理効率改善のための技巧的なコードも入り込んではいるものの、各「洗練」で行われているのは一貫して「数段に分けてプログラムを作成すること」であり、「各段階で決定することをできるだけ少なくすること」でしかなかったと思う。
+
 この2点は、しかし章の冒頭で宣言されたことであり[^21]、そんな単純なルールを丁寧に適用することで、実際にそれなりの複雑さのプログラムを作れるのだということを示されたのは、なかなかに感動ものだった。
 
 [^21]: ダイクストラ(1975)p.31
