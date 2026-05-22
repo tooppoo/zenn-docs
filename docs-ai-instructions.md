@@ -11,7 +11,7 @@
 ## 実行コマンド
 
 ```bash
-npm test
+pnpm test
 ```
 
 ## 適用対象
