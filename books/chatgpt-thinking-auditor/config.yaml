@@ -10,3 +10,5 @@ published: false
 price: 0
 chapters:
   - 00-introduction
+  - 01-what-is-thinking-auditor
+  - 02-why-verifiable-thinking
