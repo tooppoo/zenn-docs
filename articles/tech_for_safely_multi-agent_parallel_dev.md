@@ -1,5 +1,5 @@
 ---
-title: "Multi-Agent並行開発を安全に回すためにgit-kuraを作っている話"
+title: "Multi-Agent並行開発を安全に回すために、worktree間のコンフリクトを検出するツールを作った話"
 emoji: "🧰"
 type: "tech"
 topics: ["git", "ai", "claudecode", "codex", "gitworktree"]
