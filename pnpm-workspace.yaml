@@ -4,3 +4,6 @@ injectWorkspacePackages: true
 
 # minimumReleaseAge is specified in minutes; 1440 minutes = 24 hours.
 minimumReleaseAge: 1440
+minimumReleaseAgeExclude:
+  # Renovate security update: js-yaml@4.2.0
+  - js-yaml@4.2.0
