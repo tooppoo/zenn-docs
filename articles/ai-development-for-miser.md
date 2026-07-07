@@ -1,5 +1,5 @@
 ---
-title: "吝嗇家のためのAI活用"
+title: "吝嗇家のためのAI活用 - ChatGPT + Ticket Driven Development"
 emoji: "🪙"
 type: "idea"
 topics: ["ai", "chatgpt", "github", "個人開発"]
@@ -31,7 +31,7 @@ published: false
 なぜそこでChatGPTなのか。
 
 自分の観測では、Claude は Claude Code と通常の Claude 利用が同じ消費枠で扱われる。
-つまり、Claudeを使えばClaude Codeの使用量が増えるし、その逆も然りでらう。
+つまり、Claudeを使えばClaude Codeの使用量が増えるし、その逆も然りだろう。
 
 一方で、ChatGPT は Codex と基本的には別枠[^1]となる。少なくとも、Codex 側の利用上限に到達した状態でも、ChatGPT から GitHub Issue を更新する作業はできていた。
 この点（ChatGPT は Codex とは消費上限が別管理であること）に目をつけ、コーディングエージェントの前段としてChatGPTを活用しよう、というのが本稿の立場となる。
@@ -100,7 +100,7 @@ Issue と PR に文脈が残っていれば、「Issue #38 の作業を引き継
 GitHub Issue あるいは類似のIssue Tracking Systemさえあれば、同様のことができる。
 人間、ChatGPT、コーディングエージェントのあいだでプロセス横断に共有できるメモリとして、Issueを利用する。
 
-# AI時代のｎ ssue / Ticket Driven Development
+# AI時代の Issue / Ticket Driven Development
 
 これは、Issue Driven Development や Ticket Driven Development の素朴な再評価とも言えると思う。
 
