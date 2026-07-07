@@ -3,7 +3,7 @@ title: "吝嗇家のためのAI活用 - ChatGPT + Ticket Driven Development"
 emoji: "🪙"
 type: "idea"
 topics: ["ai", "chatgpt", "github", "個人開発"]
-published: false
+published: true
 ---
 
 本稿は、2026年7月7日に開催された「[【CDLE北海道】2026 before & after AI LT会](https://jdla.connpass.com/event/397563/)」での発表を背景としている。
