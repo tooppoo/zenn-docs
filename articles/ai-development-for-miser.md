@@ -8,6 +8,8 @@ published: false
 
 本稿は、2026年7月7日に開催された「[【CDLE北海道】2026 before & after AI LT会](https://jdla.connpass.com/event/397563/)」での発表を背景としている。
 
+発表スライド： <https://speakerdeck.com/tooppoo/ai-development-for-miser-chatgpt-plus-issue-driven-development>
+
 スライド上では省略して口頭で説明した内容を文書で補うことで、イベントに参加していなかった人も同水準以上の情報を得られる導線を確保することが、本稿の目的となる。
 
 # 吝嗇家とは何か
